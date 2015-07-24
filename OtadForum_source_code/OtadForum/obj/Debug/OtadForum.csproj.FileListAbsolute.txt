@@ -1,0 +1,5 @@
+c:\users\home\documents\visual studio 2010\Projects\OtadForum\OtadForum\bin\OtadForum.dll
+c:\users\home\documents\visual studio 2010\Projects\OtadForum\OtadForum\bin\OtadForum.pdb
+c:\users\home\documents\visual studio 2010\Projects\OtadForum\OtadForum\obj\Debug\ResolveAssemblyReference.cache
+c:\users\home\documents\visual studio 2010\Projects\OtadForum\OtadForum\obj\Debug\OtadForum.dll
+c:\users\home\documents\visual studio 2010\Projects\OtadForum\OtadForum\obj\Debug\OtadForum.pdb
