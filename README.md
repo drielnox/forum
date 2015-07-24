@@ -3,7 +3,7 @@
 
 A web-based forum application. 
 
-Designed using ASP.NET4.0 and C# language. MySQL5.2 Database server runs as the backend data manager.
+Designed using ASP.NET4.0 and C# language (Visual Studio 2010). MySQL5.2 Database server runs as the backend data manager.
 
 ## Basic Features 
 
