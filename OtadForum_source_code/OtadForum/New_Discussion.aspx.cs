@@ -1,4 +1,5 @@
-﻿using System;
+﻿//system references 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,6 +14,7 @@ namespace OtadForum
 {
     public partial class New_Discussion : System.Web.UI.Page
     {
+        //declaration of variables to be used within the program
         string connectionString, id, a, id1;
         MySqlConnection con;
         MySqlDataAdapter adap;
@@ -24,10 +26,9 @@ namespace OtadForum
         {
             try
             {
+                //link to connection string for the C# application and MySql database (full details in web.config file)
                 con = new MySqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["MySQLConnection"].ConnectionString);
-
                 con.Open();
-
                 txtUsername.Focus();
             }
             catch (Exception err)
@@ -39,6 +40,7 @@ namespace OtadForum
             con.Close();
         }
 
+        //generating date-time logs for each routine click
         protected void load_hidden_data_Click(object sender, EventArgs e)
         {
 
@@ -50,7 +52,7 @@ namespace OtadForum
 
 
         }
-
+        // logging into database as an Admin to start new discussion
         protected void btnLogin_Click(object sender, EventArgs e)
         {
             try
@@ -94,6 +96,7 @@ namespace OtadForum
             }
         }
 
+        // post and start new discussion
         protected void lnkPost_Click(object sender, EventArgs e)
         {
             con.Open();
@@ -150,11 +153,13 @@ namespace OtadForum
             con.Close();
         }
 
+        // load discussions page
         protected void lnkDiscussions_Click(object sender, EventArgs e)
         {
             Response.Redirect("View_Discussions.aspx");
         }
 
+        // display panel to start new discussion
         protected void lnkNewDiscussion_Click(object sender, EventArgs e)
         {
             PanelReport.Visible = false;
@@ -162,6 +167,7 @@ namespace OtadForum
             lblError.Visible = false;
         }
 
+        // send notification mail to admin about new discussion started
         protected void Send_Mail()
         {
             try
@@ -175,7 +181,7 @@ namespace OtadForum
                 //else
                 //{
 
-                m.From = new MailAddress("mtadese@gmail.com", "Forums e-Notification");
+                m.From = new MailAddress("mtadese.scripts@gmail.com", "Forums e-Notification");
                 m.To.Add(new MailAddress("mtadese.scripts@gmail.com", "Forums Mail"));
                 // m.CC.Add(new MailAddress(txtCc.Text, txtCcName.Text));
                 //m.BCC.Add(new MailAddress("BCC@yahoo.com", "Display name BCC"));
@@ -188,7 +194,7 @@ namespace OtadForum
                 //section 5
                 sc.Host = "smtp.gmail.com";
                 sc.Port = 587;
-                sc.Credentials = new System.Net.NetworkCredential("mtadese.scripts@gmail.com", "tadese15");
+                sc.Credentials = new System.Net.NetworkCredential("mtadese.scripts@gmail.com", "ta**");
                 sc.EnableSsl = true;
 
                 //sc.Port = int.Parse(txtPort.Text);
@@ -204,6 +210,7 @@ namespace OtadForum
             }
         }
 
+        // load list of available forums
         protected void Load_Forums_dropdown()
         {
             try

@@ -1,4 +1,5 @@
-﻿using System;
+﻿//system references 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,6 +14,7 @@ namespace OtadForum
 {
     public partial class New_Forum : System.Web.UI.Page
     {
+        //declaration of variables to be used within the program
         string connectionString, id, a, id1;
         MySqlConnection con;
         //MySqlDataAdapter adap;
@@ -20,14 +22,14 @@ namespace OtadForum
         MySqlDataReader dr;
         MySqlCommand cmd;
 
+
         protected void Page_Load(object sender, EventArgs e)
         {
             try
             {
+                //link to connection string for the C# application and MySql database (full details in web.config file)
                 con = new MySqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["MySQLConnection"].ConnectionString);
-
                 con.Open();
-
                 txtUsername.Focus();
             }
             catch (Exception err)
@@ -39,6 +41,7 @@ namespace OtadForum
             con.Close();
         }
 
+        //generating date-time logs for each routine click
         protected void load_hidden_data_Click(object sender, EventArgs e)
         {
             txtTime.Text = DateTime.Now.ToString("HH:mm");
@@ -47,6 +50,7 @@ namespace OtadForum
             txtPosted_by.Text = "";
         }
 
+        // logging into database as an Admin to create a new forum
         protected void btnLogin_Click(object sender, EventArgs e)
         {
             try
@@ -84,6 +88,7 @@ namespace OtadForum
             }
         }
 
+        // save new forum account details
         protected void lnkCreateForum_Click(object sender, EventArgs e)
         {
             con.Open();
@@ -137,18 +142,20 @@ namespace OtadForum
             con.Close();
 
         }
-
-        protected void lnkDiscussions_Click(object sender, EventArgs e)
+        // load forums webpage
+        protected void lnkForums_Click(object sender, EventArgs e)
         {
             Response.Redirect("Forums.aspx");
         }
 
-        protected void lnkNewDiscussion_Click(object sender, EventArgs e)
+        // display 'Create New Forum' panel and hide other panel(s)
+        protected void lnkNewForum_Click(object sender, EventArgs e)
         {
             PanelForum.Visible = true;
             PanelReport.Visible = false;
         }
 
+        // send notification mail to admin about new forum created
         protected void Send_Mail()
         {
             try
@@ -162,7 +169,7 @@ namespace OtadForum
                 //else
                 //{
 
-                m.From = new MailAddress("mtadese@gmail.com", "Forums e-Notification");
+                m.From = new MailAddress("mtadese.scripts@gmail.com", "Forums e-Notification");
                 m.To.Add(new MailAddress("mtadese.scripts@gmail.com", "Forums Mail"));
                 // m.CC.Add(new MailAddress(txtCc.Text, txtCcName.Text));
                 //m.BCC.Add(new MailAddress("BCC@yahoo.com", "Display name BCC"));
@@ -175,13 +182,14 @@ namespace OtadForum
                 //section 5
                 sc.Host = "smtp.gmail.com";
                 sc.Port = 587;
-                sc.Credentials = new System.Net.NetworkCredential("mtadese.scripts@gmail.com", "tadese15");
+                sc.Credentials = new System.Net.NetworkCredential("mtadese.scripts@gmail.com", "ta**");
                 sc.EnableSsl = true;
 
                 //sc.Port = int.Parse(txtPort.Text);
                 //sc.Credentials = new System.Net.NetworkCredential(txtCred1.Text, txtCred2.Text);                    
                 //sc.EnableSsl = bool.Parse(txtSSL.Text); // runtime encrypt the SMTP communications using SSL
                 sc.Send(m);
+                               
 
             }
             catch (Exception err)

@@ -1,4 +1,5 @@
-﻿using System;
+﻿//system references 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,6 +12,7 @@ namespace OtadForum
 {
     public partial class Manage_Forums : System.Web.UI.Page
     {
+        //declaration of variables to be used within the program
         string connectionString, id, a, id1;
         MySqlConnection con;
         MySqlDataAdapter adap;
@@ -22,12 +24,9 @@ namespace OtadForum
         {
             try
             {
+                //link to connection string for the C# application and MySql database (full details in web.config file)
                 con = new MySqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["MySQLConnection"].ConnectionString);
-
-                //connectionString = "Server=localhost;Database=mt_dbase;Uid=mtadese;Pwd=Password-15;";
-                //con = new MySqlConnection(connectionString);
                 con.Open();
-
                 txtUsername.Focus();
 
                 Load_Forums();
@@ -40,7 +39,7 @@ namespace OtadForum
             }
             con.Close();
         }
-
+        // logging into database as an Admin to manage available forums
         protected void btnLogin_Click(object sender, EventArgs e)
         {
             try
@@ -79,6 +78,7 @@ namespace OtadForum
             }
         }
 
+        // display available forums on a gridbox control
         protected void grdForums_SelectedIndexChanged(object sender, EventArgs e)
         {
             Load_ForumID_Textfield();
@@ -88,6 +88,7 @@ namespace OtadForum
 
         }
 
+        // load forum id into textfield for further reviews
         protected void Load_ForumID_Textfield()
         {
             try
@@ -105,6 +106,7 @@ namespace OtadForum
             con.Close();
         }
 
+        // load selected forum details for updating routines
         protected void Load_Forum_Details()
         {
             try
@@ -130,6 +132,7 @@ namespace OtadForum
             }
         }
 
+        // display forums on webpage if login is granted
         protected void Load_Forums()
         {
             try
@@ -156,6 +159,7 @@ namespace OtadForum
             //con.Close();
         }
 
+        // save updated details into selected forum's record
         protected void lnkUpdateForum_Click(object sender, EventArgs e)
         {
             con.Open();
@@ -200,6 +204,7 @@ namespace OtadForum
             con.Close();
         }
 
+        // display all forums on gridview control and hide other details
         protected void lnkForums_Click(object sender, EventArgs e)
         {
             PanelForums.Visible = true;
