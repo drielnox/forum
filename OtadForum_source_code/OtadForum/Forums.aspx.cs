@@ -1,4 +1,5 @@
-﻿using System;
+﻿//system references 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,6 +14,7 @@ namespace OtadForum
 {
     public partial class Forums : System.Web.UI.Page
     {
+        //declaration of variables to be used within the program
         string connectionString, frname, a, id, id1;
         MySqlConnection con;
         MySqlDataAdapter adap;
@@ -23,10 +25,9 @@ namespace OtadForum
         {
             try
             {
+                //link to connection string for the C# application and MySql database (full details in web.config file)
                 con = new MySqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["MySQLConnection"].ConnectionString);
-
                 con.Open();
-
                 Load_Forums();
 
             }
@@ -40,6 +41,7 @@ namespace OtadForum
             con.Close();
         }
 
+        // load all available forums in gridview control
         protected void Load_Forums()
         {
             try
@@ -68,6 +70,7 @@ namespace OtadForum
             //con.Close();
         }
 
+        // display all posted topics under the selected forum
         protected void Load_Topics()
         {
             try
@@ -96,6 +99,7 @@ namespace OtadForum
             con.Close();
         }
 
+        // display forum name in textfield for further referencing on webpage
         protected void Load_ForumName_Textfield()
         {
             try
@@ -113,6 +117,7 @@ namespace OtadForum
             //con.Close();
         }
 
+        // query and display details of selected forum from database 
         protected void Load_Forum_Details()
         {
             try
@@ -142,6 +147,7 @@ namespace OtadForum
             }
         }
 
+        // display details and available topics of selected forum
         protected void grdForums_SelectedIndexChanged(object sender, EventArgs e)
         {
             Load_ForumName_Textfield();
@@ -152,6 +158,7 @@ namespace OtadForum
 
         }
 
+        // save topic-id of selected topic into a textbox for further referencing
         protected void Load_topicID_Textfield()
         {
             try
@@ -174,6 +181,7 @@ namespace OtadForum
 
         }
 
+        // save topic-id of selected topic from 'Forums' module to 'Discussions' module to view topic's full discussion 
         protected void show_textvalue()
         {
             //showing text value on multiple page
@@ -188,6 +196,7 @@ namespace OtadForum
             //lblLogUser.Text = id1;
         }
 
+        // display topic-id of selected topic on 'Discussions' module and open the 'Discussions' module to view full discussion
         protected void grdTopics_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -209,6 +218,7 @@ namespace OtadForum
             }
         }
 
+        // display available forums and hide forums' topics module
         protected void lnkForums_Click(object sender, EventArgs e)
         {
             PanelForums.Visible = true;

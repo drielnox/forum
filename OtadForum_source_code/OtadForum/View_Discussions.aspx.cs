@@ -1,4 +1,5 @@
-﻿using System;
+﻿//system references 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,6 +12,7 @@ namespace OtadForum
 {
     public partial class View_Discussions : System.Web.UI.Page
     {
+        //declaration of variables to be used within the program
         string connectionString, id, a, id1;
         MySqlConnection con;
         MySqlDataAdapter adap;
@@ -21,10 +23,9 @@ namespace OtadForum
         {
             try
             {
+                //link to connection string for the C# application and MySql database (full details in web.config file)
                 con = new MySqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["MySQLConnection"].ConnectionString);
-
                 con.Open();
-
                 Load_Topics();
 
             }
@@ -38,6 +39,7 @@ namespace OtadForum
             con.Close();
         }
 
+        // display discussion topics on gridview control
         protected void Load_Topics()
         {
             try
@@ -66,6 +68,7 @@ namespace OtadForum
             //con.Close();
         }
 
+        // save topic-id of selected discussion in textfield for futher referencing in other modules
         protected void Load_topicID_Textfield()
         {
             try
@@ -88,6 +91,7 @@ namespace OtadForum
             //con.Close();
         }
 
+        //generating date-time logs for each routine on this module
         protected void load_hidden_data_Click(object sender, EventArgs e)
         {
             txtTime.Text = DateTime.Now.ToString("HH:mm");
@@ -97,6 +101,7 @@ namespace OtadForum
 
         }
 
+        // show selected discussion's contents referencing the saved topic-id and loading-up the discussion content's module
         protected void grdTopics_SelectedIndexChanged(object sender, EventArgs e)
         {
             con.Open();
@@ -109,9 +114,9 @@ namespace OtadForum
             con.Close();
         }
 
+        //showing text value on multiple page
         protected void show_textvalue()
-        {
-            //showing text value on multiple page
+        {           
 
             id1 = txtTopicID.Text;
             Session["Value"] = id1;

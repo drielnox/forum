@@ -1,4 +1,5 @@
-﻿using System;
+﻿//system references 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,6 +12,7 @@ namespace OtadForum
 {
     public partial class Discussion : System.Web.UI.Page
     {
+        //declaration of variables to be used within the program
         string connectionString, id, a, id1;
         MySqlConnection con;
         MySqlDataAdapter adap;
@@ -22,10 +24,9 @@ namespace OtadForum
         {
             try
             {
+                //link to connection string for the C# application and MySql database (full details in web.config file)
                 con = new MySqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["MySQLConnection"].ConnectionString);
-
                 con.Open();
-
                 show_text_values();
 
                 Show_Discussion();
@@ -40,6 +41,7 @@ namespace OtadForum
             }
         }
 
+        // save topic-id of selected discussion to be referenced from other modules
         protected void show_text_values()
         {
 
@@ -50,6 +52,7 @@ namespace OtadForum
             txtTopicID.Text = id1;
         }
 
+        //generating date-time logs for each routine on this module
         protected void load_hidden_data_Click(object sender, EventArgs e)
         {
             txtTime.Text = DateTime.Now.ToString("HH:mm");
@@ -58,12 +61,14 @@ namespace OtadForum
             //txtPosted_by.Text = "";            
         }
 
+        // display the comment module. required to post comments
         protected void lnkComment_Click(object sender, EventArgs e)
         {
             PanelComment.Visible = true;
 
         }
 
+        // post user's comment (feedback)
         protected void lnkPost_Click(object sender, EventArgs e)
         {
             con.Open();
@@ -122,6 +127,7 @@ namespace OtadForum
 
         }
 
+        // display discussion of selected topics and all comments posted under such discussion
         protected void Show_Discussion()
         {
             try
@@ -160,6 +166,7 @@ namespace OtadForum
 
         }
 
+        // count and displays number of times the discussions have been opened(viewed)
         protected void Update_Views()
         {
             con.Open();
@@ -172,6 +179,7 @@ namespace OtadForum
             con.Close();
         }
 
+        // display by default, all comments posted within a selected discussion
         protected void Load_Comments()
         {
             try
@@ -200,6 +208,7 @@ namespace OtadForum
             //con.Close();
         }
 
+        // testing 'number of discussion views' syntax
         protected void Button1_Click(object sender, EventArgs e)
         {
             Update_Views();
