@@ -1,7 +1,7 @@
 # OtadForum
 
 
-A web-based forum application. 
+A web-based forum management application. 
 
 Designed using ASP.NET4.0 and C# language (Visual Studio 2010). MySQL5.2 Database server runs as the backend data manager.
 
