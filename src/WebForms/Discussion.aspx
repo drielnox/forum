@@ -1,10 +1,8 @@
-﻿<%@ Page Title="View Discussions and Comments" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Discussion.aspx.cs" Inherits="OtadForum.Discussion" %>
+﻿<%@ Page Title="View Discussions and Comments" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Discussion.aspx.cs" Inherits="OtadForum.Discussion" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
     <style type="text/css">
-
-
-        .style3
-        {
+        .style3 {
             font-family: "Segoe UI";
             font-weight: bold;
             font-size: x-large;
@@ -14,14 +12,14 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <p align="center">
-        <asp:Label ID="lblError" runat="server" BackColor="Red" Font-Bold="True" 
+        <asp:Label ID="lblError" runat="server" BackColor="Red" Font-Bold="True"
             Font-Names="Arial" Font-Size="Large" ForeColor="White" Text="E" Visible="False"></asp:Label>
     </p>
     <br />
     <span __designer:mapid="4c8" class="style3">Forum Discussions</span><br />
     <br />
     <div style="height: 34px; background-color: #666666; color: #003399; vertical-align: middle;">
-        <asp:Label ID="lblForum" runat="server" Font-Bold="True" Font-Size="Large" 
+        <asp:Label ID="lblForum" runat="server" Font-Bold="True" Font-Size="Large"
             ForeColor="White"></asp:Label>
         <br />
         <br />
@@ -40,35 +38,35 @@
         <br />
     </div>
     <div style="height: 26px">
-        <asp:Label ID="lblTopic" runat="server" Font-Bold="True" Font-Size="Medium" 
+        <asp:Label ID="lblTopic" runat="server" Font-Bold="True" Font-Size="Medium"
             ForeColor="Black"></asp:Label>
     </div>
     <br />
     <br />
     <div>
-        <asp:Label ID="lblDiscussion" runat="server" Font-Names="Arial" 
+        <asp:Label ID="lblDiscussion" runat="server" Font-Names="Arial"
             Font-Size="Medium" ForeColor="Black" Height="24px" Width="700px"></asp:Label>
     </div>
     <br />
     <div>
         <br />
-        <asp:GridView ID="grdComments" runat="server" AutoGenerateColumns="False" 
-            CellPadding="4" EnableSortingAndPagingCallbacks="True" ForeColor="#333333" 
-            GridLines="None" HeaderStyle-BackColor="#3AC0F2" HeaderStyle-ForeColor="White" 
-            PageSize="5" style="text-align: justify" Width="600px">
-            <RowStyle BackColor="#F7F6F3" ForeColor="#333333" HorizontalAlign="Left" 
+        <asp:GridView ID="grdComments" runat="server" AutoGenerateColumns="False"
+            CellPadding="4" EnableSortingAndPagingCallbacks="True" ForeColor="#333333"
+            GridLines="None" HeaderStyle-BackColor="#3AC0F2" HeaderStyle-ForeColor="White"
+            PageSize="5" Style="text-align: justify" Width="600px">
+            <RowStyle BackColor="#F7F6F3" ForeColor="#333333" HorizontalAlign="Left"
                 Width="10px" Wrap="True" />
             <Columns>
-                <asp:BoundField DataField="comment_id" HeaderText="Comment_ID" 
+                <asp:BoundField DataField="comment_id" HeaderText="Comment_ID"
                     ItemStyle-Width="150" Visible="False">
-                <ItemStyle Width="50px" />
+                    <ItemStyle Width="50px" />
                 </asp:BoundField>
                 <asp:BoundField DataField="Comment" HeaderText="Comment" />
                 <asp:BoundField DataField="comment_date" HeaderText="Date" />
                 <asp:BoundField DataField="comment_time" HeaderText="Time" />
                 <asp:BoundField DataField="comment_by" HeaderText="By" />
                 <asp:ButtonField CommandName="Select" ItemStyle-Width="150" Text=".">
-                <ItemStyle Width="50px" />
+                    <ItemStyle Width="50px" />
                 </asp:ButtonField>
             </Columns>
             <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
@@ -76,13 +74,13 @@
             <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
             <HeaderStyle BackColor="#99CCFF" Font-Bold="True" ForeColor="Black" />
             <EditRowStyle BackColor="#999999" HorizontalAlign="Left" />
-            <AlternatingRowStyle BackColor="White" ForeColor="#284775" 
+            <AlternatingRowStyle BackColor="White" ForeColor="#284775"
                 HorizontalAlign="Left" />
         </asp:GridView>
         <br />
         <br />
-        <asp:LinkButton ID="lnkComment" runat="server" BorderStyle="Inset" 
-            Font-Bold="True" Font-Underline="False" onclick="lnkComment_Click">Comment</asp:LinkButton>
+        <asp:LinkButton ID="lnkComment" runat="server" BorderStyle="Inset"
+            Font-Bold="True" Font-Underline="False" OnClick="lnkComment_Click">Comment</asp:LinkButton>
         &nbsp;&nbsp;&nbsp;
     </div>
     <br />
@@ -96,20 +94,20 @@
         <div style="height: 358px">
             <br />
             Name:<br />
-            <asp:TextBox ID="txtName" runat="server" CssClass="textEntry" width="473px"></asp:TextBox>
+            <asp:TextBox ID="txtName" runat="server" CssClass="textEntry" Width="473px"></asp:TextBox>
             <br />
             <br />
             Email:<br />
-            <asp:TextBox ID="txtEmail" runat="server" CssClass="textEntry" width="473px"></asp:TextBox>
+            <asp:TextBox ID="txtEmail" runat="server" CssClass="textEntry" Width="473px"></asp:TextBox>
             <br />
             <br />
             <br />
-            <asp:TextBox ID="txtComment" runat="server" CssClass="textEntry" Height="169px" 
-                TextMode="MultiLine" width="473px"></asp:TextBox>
+            <asp:TextBox ID="txtComment" runat="server" CssClass="textEntry" Height="169px"
+                TextMode="MultiLine" Width="473px"></asp:TextBox>
             <br />
             <br />
-            <asp:LinkButton ID="lnkPost" runat="server" BorderStyle="Solid" 
-                Font-Bold="True" Font-Underline="False" Height="16px" onclick="lnkPost_Click" 
+            <asp:LinkButton ID="lnkPost" runat="server" BorderStyle="Solid"
+                Font-Bold="True" Font-Underline="False" Height="16px" OnClick="lnkPost_Click"
                 Width="35px">Post</asp:LinkButton>
             <br />
             <br />
@@ -139,11 +137,11 @@
         &nbsp;
         <asp:TextBox ID="txtViewNoNew" runat="server"></asp:TextBox>
         <br />
-        &nbsp;<asp:Button ID="load_hidden_data" runat="server" 
-            onclick="load_hidden_data_Click" style="height: 26px; width: 56px" 
+        &nbsp;<asp:Button ID="load_hidden_data" runat="server"
+            OnClick="load_hidden_data_Click" Style="height: 26px; width: 56px"
             Text="Button" />
         &nbsp;
-        <asp:Button ID="Button1" runat="server" onclick="Button1_Click" 
+        <asp:Button ID="Button1" runat="server" OnClick="Button1_Click"
             Text="Update Views" />
     </asp:Panel>
     <br />

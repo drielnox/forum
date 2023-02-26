@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site1.master" AutoEventWireup="true"
+﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true"
     CodeBehind="Default.aspx.cs" Inherits="OtadForum._Default" %>
 
 <asp:Content ID="HeaderContent" runat="server" ContentPlaceHolderID="HeadContent">
@@ -8,21 +8,23 @@
         Welcome to Otad forum&#39;s Portal
     </div>
     <p>
-        View <a href="http://localhost:40000/view_discussions.aspx" title="Discussions">
-        Recent discussions</a> and related comments</p>
+        View <a href="http://localhost:40000/view_discussions.aspx" title="Discussions">Recent discussions</a> and related comments
+    </p>
     <p>
-        Start <a href="http://localhost:40000/new_discussion.aspx" 
-            title="New Discussion">new discussion</a></p>
+        Start <a href="http://localhost:40000/new_discussion.aspx"
+            title="New Discussion">new discussion</a>
+    </p>
     <p>
-        Go to <a href="http://localhost:40000/forums.aspx" title="Forums">forums</a> 
-        page to view available forums and related discussions</p>
-        <br />
-        <br />
-        <br />
+        Go to <a href="http://localhost:40000/forums.aspx" title="Forums">forums</a>
+        page to view available forums and related discussions
+    </p>
     <br />
     <br />
-        <br />
-        <br />
-        <br />
-        <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
 </asp:Content>

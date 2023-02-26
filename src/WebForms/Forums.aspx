@@ -1,35 +1,36 @@
-﻿<%@ Page Title="View Forums" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Forums.aspx.cs" Inherits="OtadForum.Forums" %>
+﻿<%@ Page Title="View Forums" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Forums.aspx.cs" Inherits="OtadForum.Forums" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <p align="center">
-        <asp:Label ID="lblError" runat="server" BackColor="Red" Font-Bold="True" 
+        <asp:Label ID="lblError" runat="server" BackColor="Red" Font-Bold="True"
             Font-Names="Arial" Font-Size="Large" ForeColor="White" Text="E" Visible="False"></asp:Label>
     </p>
     <br />
     <asp:Panel ID="PanelForums" runat="server" Height="414px">
         <span class="style3" style="text-align: right">Forums Page<br />
-        <br />
-        <asp:LinkButton ID="LinkButton2" runat="server" Font-Bold="False" 
-            Font-Size="Small">Refresh Discussions</asp:LinkButton>
+            <br />
+            <asp:LinkButton ID="LinkButton2" runat="server" Font-Bold="False"
+                Font-Size="Small">Refresh Discussions</asp:LinkButton>
         </span>
         <div style="height: 216px">
-            <asp:GridView ID="grdForums" runat="server" AllowPaging="True" 
-                AutoGenerateColumns="False" BackColor="#CCCCCC" BorderColor="#999999" 
-                BorderStyle="Solid" BorderWidth="3px" CellPadding="4" CellSpacing="2" 
-                EnableSortingAndPagingCallbacks="True" Font-Bold="False" Font-Size="Medium" 
-                ForeColor="Black" HeaderStyle-BackColor="#3AC0F2" HeaderStyle-ForeColor="White" 
-                onselectedindexchanged="grdForums_SelectedIndexChanged" 
-                style="text-align: justify" Width="914px">
+            <asp:GridView ID="grdForums" runat="server" AllowPaging="True"
+                AutoGenerateColumns="False" BackColor="#CCCCCC" BorderColor="#999999"
+                BorderStyle="Solid" BorderWidth="3px" CellPadding="4" CellSpacing="2"
+                EnableSortingAndPagingCallbacks="True" Font-Bold="False" Font-Size="Medium"
+                ForeColor="Black" HeaderStyle-BackColor="#3AC0F2" HeaderStyle-ForeColor="White"
+                OnSelectedIndexChanged="grdForums_SelectedIndexChanged"
+                Style="text-align: justify" Width="914px">
                 <RowStyle BackColor="White" HorizontalAlign="Left" Width="10px" Wrap="True" />
                 <Columns>
-                    <asp:ButtonField CommandName="Select" HeaderText="View_Forum" 
+                    <asp:ButtonField CommandName="Select" HeaderText="View_Forum"
                         ItemStyle-Width="150" ShowHeader="True" Text="View_Forum">
-                    <ItemStyle Width="50px" />
+                        <ItemStyle Width="50px" />
                     </asp:ButtonField>
-                    <asp:BoundField DataField="forum_name" HeaderText="Forum_Name" 
+                    <asp:BoundField DataField="forum_name" HeaderText="Forum_Name"
                         ItemStyle-Width="150">
-                    <ItemStyle Width="50px" />
+                        <ItemStyle Width="50px" />
                     </asp:BoundField>
                     <asp:BoundField DataField="forum_admin" HeaderText="Administrator" />
                     <asp:BoundField DataField="forum_email" HeaderText="Email" />
@@ -53,13 +54,13 @@
     <br />
     <br />
     <div>
-        <asp:Panel ID="PanelDiscuss" runat="server" Height="214px" 
-            style="margin-left: 9px" Visible="False">
-            <asp:LinkButton ID="lnkForums" runat="server" Font-Underline="False" 
-                onclick="lnkForums_Click">Back to Forums</asp:LinkButton>
+        <asp:Panel ID="PanelDiscuss" runat="server" Height="214px"
+            Style="margin-left: 9px" Visible="False">
+            <asp:LinkButton ID="lnkForums" runat="server" Font-Underline="False"
+                OnClick="lnkForums_Click">Back to Forums</asp:LinkButton>
             <br />
             <div style="height: 34px; background-color: #666666; color: #003399; vertical-align: middle;">
-                <asp:Label ID="lblForum" runat="server" Font-Bold="True" Font-Size="Large" 
+                <asp:Label ID="lblForum" runat="server" Font-Bold="True" Font-Size="Large"
                     ForeColor="White"></asp:Label>
                 <br />
                 <br />
@@ -67,10 +68,10 @@
             </div>
             <div style="height: 24px; background-color: #99CCFF; color: #003399;">
                 Created on:
-                <asp:Label ID="lblDate" runat="server" Font-Bold="True" Font-Size="Medium" 
+                <asp:Label ID="lblDate" runat="server" Font-Bold="True" Font-Size="Medium"
                     ForeColor="Black"></asp:Label>
                 &nbsp;;
-                <asp:Label ID="lblTime" runat="server" Font-Bold="True" Font-Size="Medium" 
+                <asp:Label ID="lblTime" runat="server" Font-Bold="True" Font-Size="Medium"
                     ForeColor="Black"></asp:Label>
                 <br />
                 <br />
@@ -78,10 +79,10 @@
             </div>
             <div style="height: 24px; background-color: #99CCFF; color: #003399;">
                 Admin:&nbsp;
-                <asp:Label ID="lblAdmin" runat="server" Font-Bold="True" Font-Size="Medium" 
+                <asp:Label ID="lblAdmin" runat="server" Font-Bold="True" Font-Size="Medium"
                     ForeColor="Black"></asp:Label>
                 &nbsp;;&nbsp; Email:
-                <asp:Label ID="lblEmail" runat="server" Font-Bold="True" Font-Size="Medium" 
+                <asp:Label ID="lblEmail" runat="server" Font-Bold="True" Font-Size="Medium"
                     ForeColor="Black"></asp:Label>
                 <br />
                 <br />
@@ -90,22 +91,22 @@
             <div style="text-align: right">
                 <asp:LinkButton ID="LinkButton1" runat="server">Refresh Discussions</asp:LinkButton>
                 <br />
-                <asp:GridView ID="grdTopics" runat="server" AllowPaging="True" 
-                    AllowSorting="True" AutoGenerateColumns="False" BackColor="#CCCCCC" 
-                    BorderColor="#999999" BorderStyle="Solid" BorderWidth="3px" CellPadding="4" 
-                    CellSpacing="2" EnableSortingAndPagingCallbacks="True" Font-Bold="False" 
-                    Font-Size="Medium" ForeColor="Black" HeaderStyle-BackColor="#3AC0F2" 
-                    HeaderStyle-ForeColor="White" Height="359px" 
-                    onselectedindexchanged="grdTopics_SelectedIndexChanged" 
-                    style="text-align: justify" Width="906px">
+                <asp:GridView ID="grdTopics" runat="server" AllowPaging="True"
+                    AllowSorting="True" AutoGenerateColumns="False" BackColor="#CCCCCC"
+                    BorderColor="#999999" BorderStyle="Solid" BorderWidth="3px" CellPadding="4"
+                    CellSpacing="2" EnableSortingAndPagingCallbacks="True" Font-Bold="False"
+                    Font-Size="Medium" ForeColor="Black" HeaderStyle-BackColor="#3AC0F2"
+                    HeaderStyle-ForeColor="White" Height="359px"
+                    OnSelectedIndexChanged="grdTopics_SelectedIndexChanged"
+                    Style="text-align: justify" Width="906px">
                     <RowStyle BackColor="White" HorizontalAlign="Left" Width="10px" Wrap="True" />
                     <Columns>
                         <asp:BoundField DataField="post_id" HeaderText="ID" ItemStyle-Width="150">
-                        <ItemStyle Width="50px" />
+                            <ItemStyle Width="50px" />
                         </asp:BoundField>
-                        <asp:ButtonField CommandName="Select" DataTextField="post_subject" 
+                        <asp:ButtonField CommandName="Select" DataTextField="post_subject"
                             HeaderText="Subject_of_Discussion" ItemStyle-Width="150" Text="Title">
-                        <ItemStyle Width="50px" />
+                            <ItemStyle Width="50px" />
                         </asp:ButtonField>
                         <asp:BoundField DataField="posted_by" HeaderText="Posted_by" />
                         <asp:BoundField DataField="post_date" HeaderText="Date" />
@@ -147,7 +148,8 @@
     <br />
     <br />
     <asp:Panel ID="Panel3" runat="server" Height="100px" Visible="False">
-        Hidden fields:<br />&nbsp;<asp:TextBox ID="txtTime" runat="server"></asp:TextBox>
+        Hidden fields:<br />
+        &nbsp;<asp:TextBox ID="txtTime" runat="server"></asp:TextBox>
         &nbsp;
         <asp:TextBox ID="txtDate" runat="server"></asp:TextBox>
         &nbsp;&nbsp;

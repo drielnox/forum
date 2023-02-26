@@ -1,0 +1,71 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.Master.cs" Inherits="C3_Platform.SiteMaster" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head runat="server">
+    <title></title>
+    <link href="~/Styles/Site1.css" rel="stylesheet" type="text/css" />
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+    <style type="text/css">
+        .style1 {
+            display: block;
+            float: left;
+            text-align: left;
+            width: 250px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: x-large;
+            color: #FFFF8C;
+            font-style: normal;
+        }
+
+        .style2 {
+            font-size: 1.1em;
+            display: block;
+            text-align: right;
+            padding: 10px;
+            color: #FFFF8C;
+            height: 41px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <form runat="server">
+        <div class="page">
+            <div class="header">
+                <div class="style1" style="height: 37px; margin-left: 12px; margin-top: 12px;">
+                    <img alt="" src="otad_forum.png" />
+                </div>
+                <div class="style2">
+                    <script language="c#" runat="server">
+                    </script>
+                </div>
+                <div class="clear hideSkiplink">
+                    <asp:Menu ID="NavigationMenu" runat="server" CssClass="menu" EnableViewState="false" IncludeStyleBlock="false" Orientation="Horizontal">
+                        <Items>
+                            <asp:MenuItem NavigateUrl="~/Default.aspx" Text="Home"></asp:MenuItem>
+                            <asp:MenuItem Text="Forums" Value="Forums" NavigateUrl="~/Forums.aspx">
+                                <asp:MenuItem NavigateUrl="~/Forums.aspx" Text="View Forums" Value="View Forums"></asp:MenuItem>
+                                <asp:MenuItem Text="New Forum" Value="New Forum" NavigateUrl="~/New_Forum.aspx"></asp:MenuItem>
+                                <asp:MenuItem Text="Manage Forums" Value="Manage Forums" NavigateUrl="~/Manage_Forums.aspx"></asp:MenuItem>
+                            </asp:MenuItem>
+                            <asp:MenuItem NavigateUrl="~/View_Discussions.aspx" Text="Discussions" Value="Discussions">
+                                <asp:MenuItem NavigateUrl="~/View_Discussions.aspx" Text="View Discussions" Value="View Discussions"></asp:MenuItem>
+                                <asp:MenuItem NavigateUrl="~/New_Discussion.aspx" Text="New Discussion" Value="New Discussion"></asp:MenuItem>
+                            </asp:MenuItem>
+                        </Items>
+                    </asp:Menu>
+                </div>
+            </div>
+            <div class="main">
+                <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+            </div>
+            <div class="clear">
+            </div>
+        </div>
+        <div class="footer">
+        </div>
+    </form>
+</body>
+</html>
