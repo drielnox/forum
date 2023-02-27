@@ -12,15 +12,13 @@ using System.Net.Mime;
 
 namespace OtadForum
 {
-    public partial class New_Discussion : System.Web.UI.Page
+    public partial class NewDiscussion : Page
     {
-        //declaration of variables to be used within the program
-        string connectionString, id, a, id1;
-        MySqlConnection con;
-        MySqlDataAdapter adap;
-        DataSet ds1, ds;
-        MySqlDataReader dr;
-        MySqlCommand cmd;
+        private MySqlConnection con;
+        private MySqlDataAdapter adap;
+        private DataSet ds1;
+        private MySqlDataReader dr;
+        private MySqlCommand cmd;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -151,12 +149,6 @@ namespace OtadForum
                 lblError.Text = "Error: " + err.Message;
             }
             con.Close();
-        }
-
-        // load discussions page
-        protected void lnkDiscussions_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("View_Discussions.aspx");
         }
 
         // display panel to start new discussion

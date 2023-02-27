@@ -1,5 +1,4 @@
-﻿//system references 
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,18 +7,16 @@ using System.Web.UI.WebControls;
 using System.Data;
 using MySql.Data.MySqlClient;
 
-using MySql.Web.Security;
-
 namespace OtadForum
 {
-    public partial class Forums : System.Web.UI.Page
+    public partial class ViewForums : Page
     {
         //declaration of variables to be used within the program
-        string connectionString, frname, a, id, id1;
-        MySqlConnection con;
-        MySqlDataAdapter adap;
-        DataSet ds1, ds;
-        MySqlDataReader dr;
+        private string frname, id, id1;
+        private MySqlConnection con;
+        private MySqlDataAdapter adap;
+        private DataSet ds1;
+        private MySqlDataReader dr;
 
         protected void Page_Load(object sender, EventArgs e)
         {

@@ -1,5 +1,4 @@
-﻿//system references 
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,15 +9,13 @@ using MySql.Data.MySqlClient;
 
 namespace OtadForum
 {
-    public partial class Discussion : System.Web.UI.Page
+    public partial class Discussion : Page
     {
-        //declaration of variables to be used within the program
-        string connectionString, id, a, id1;
-        MySqlConnection con;
-        MySqlDataAdapter adap;
-        DataSet ds1, ds;
-        MySqlDataReader dr;
-        MySqlCommand cmd;
+        private MySqlConnection con;
+        private MySqlDataAdapter adap;
+        private DataSet ds1;
+        private MySqlDataReader dr;
+        private MySqlCommand cmd;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -48,7 +45,7 @@ namespace OtadForum
             //copy this symtax to other pages:
 
             string id1;
-            id1 = (string)(Session["Value"]);
+            id1 = (string)Session["Value"];
             txtTopicID.Text = id1;
         }
 

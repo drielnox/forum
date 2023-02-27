@@ -8,23 +8,12 @@
         Welcome to Otad forum&#39;s Portal
     </div>
     <p>
-        View <a href="http://localhost:40000/view_discussions.aspx" title="Discussions">Recent discussions</a> and related comments
+        View <asp:HyperLink ID="hlRecentDiscussions" runat="server" NavigateUrl="~/Discussions/View.aspx" ToolTip="Discussions">Recent discussions</asp:HyperLink> and related comments
     </p>
     <p>
-        Start <a href="http://localhost:40000/new_discussion.aspx"
-            title="New Discussion">new discussion</a>
+        Start <asp:HyperLink ID="hlNewDiscussion" runat="server" NavigateUrl="~/Discussions/New.aspx" ToolTip="New Discussion">new discussion</asp:HyperLink>
     </p>
     <p>
-        Go to <a href="http://localhost:40000/forums.aspx" title="Forums">forums</a>
-        page to view available forums and related discussions
+        Go to <asp:HyperLink ID="hlForums" runat="server" NavigateUrl="~/Forums/View.aspx" ToolTip="Forums">forums</asp:HyperLink> page to view available forums and related discussions
     </p>
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
 </asp:Content>

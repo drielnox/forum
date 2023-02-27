@@ -1,5 +1,4 @@
-﻿//system references 
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,14 +9,13 @@ using MySql.Data.MySqlClient;
 
 namespace OtadForum
 {
-    public partial class View_Discussions : System.Web.UI.Page
+    public partial class ViewDiscussions : Page
     {
         //declaration of variables to be used within the program
-        string connectionString, id, a, id1;
-        MySqlConnection con;
-        MySqlDataAdapter adap;
-        DataSet ds1, ds;
-        MySqlDataReader dr;
+        private string id, a, id1;
+        private MySqlConnection con;
+        private MySqlDataAdapter adap;
+        private DataSet ds1;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -81,7 +79,7 @@ namespace OtadForum
 
                 MySqlCommand cmd = con.CreateCommand();
                 cmd.CommandText = "Select * from forum_discussions where post_id = '" + a + "' ";
-                dr = cmd.ExecuteReader();
+                cmd.ExecuteReader();
             }
             catch (Exception err)
             {

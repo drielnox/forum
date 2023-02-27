@@ -12,15 +12,11 @@ using System.Net.Mime;
 
 namespace OtadForum
 {
-    public partial class New_Forum : System.Web.UI.Page
+    public partial class NewForum : Page
     {
-        //declaration of variables to be used within the program
-        string connectionString, id, a, id1;
-        MySqlConnection con;
-        //MySqlDataAdapter adap;
-        //DataSet ds1, ds;
-        MySqlDataReader dr;
-        MySqlCommand cmd;
+        private MySqlConnection con;
+        private MySqlDataReader dr;
+        private MySqlCommand cmd;
 
 
         protected void Page_Load(object sender, EventArgs e)

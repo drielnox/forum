@@ -11,7 +11,7 @@ namespace OtadForum
 {
 
 
-    public partial class View_Discussions
+    public partial class ViewDiscussions
     {
 
         /// <summary>

@@ -45,14 +45,14 @@
                     <asp:Menu ID="NavigationMenu" runat="server" CssClass="menu" EnableViewState="false" IncludeStyleBlock="false" Orientation="Horizontal">
                         <Items>
                             <asp:MenuItem NavigateUrl="~/Default.aspx" Text="Home"></asp:MenuItem>
-                            <asp:MenuItem Text="Forums" Value="Forums" NavigateUrl="~/Forums.aspx">
-                                <asp:MenuItem NavigateUrl="~/Forums.aspx" Text="View Forums" Value="View Forums"></asp:MenuItem>
-                                <asp:MenuItem Text="New Forum" Value="New Forum" NavigateUrl="~/New_Forum.aspx"></asp:MenuItem>
-                                <asp:MenuItem Text="Manage Forums" Value="Manage Forums" NavigateUrl="~/Manage_Forums.aspx"></asp:MenuItem>
+                            <asp:MenuItem Text="Forums" Selectable="False">
+                                <asp:MenuItem NavigateUrl="~/Forums/View.aspx" Text="View Forums"></asp:MenuItem>
+                                <asp:MenuItem Text="New Forum" NavigateUrl="~/Forums/New.aspx"></asp:MenuItem>
+                                <asp:MenuItem Text="Manage Forums" NavigateUrl="~/Forums/Manage.aspx"></asp:MenuItem>
                             </asp:MenuItem>
-                            <asp:MenuItem NavigateUrl="~/View_Discussions.aspx" Text="Discussions" Value="Discussions">
-                                <asp:MenuItem NavigateUrl="~/View_Discussions.aspx" Text="View Discussions" Value="View Discussions"></asp:MenuItem>
-                                <asp:MenuItem NavigateUrl="~/New_Discussion.aspx" Text="New Discussion" Value="New Discussion"></asp:MenuItem>
+                            <asp:MenuItem Text="Discussions" Selectable="False">
+                                <asp:MenuItem NavigateUrl="~/Discussions/View.aspx" Text="View Discussions"></asp:MenuItem>
+                                <asp:MenuItem NavigateUrl="~/Discussions/New.aspx" Text="New Discussion"></asp:MenuItem>
                             </asp:MenuItem>
                         </Items>
                     </asp:Menu>

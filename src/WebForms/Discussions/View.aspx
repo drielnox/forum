@@ -1,4 +1,4 @@
-﻿<%@ Page Title="View Discussions" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="View_Discussions.aspx.cs" Inherits="OtadForum.View_Discussions" %>
+﻿<%@ Page Title="View Discussions" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="View.aspx.cs" Inherits="OtadForum.ViewDiscussions" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Create New Forum" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="New_Forum.aspx.cs" Inherits="OtadForum.New_Forum" %>
+﻿<%@ Page Title="Create New Forum" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="New.aspx.cs" Inherits="OtadForum.NewForum" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>

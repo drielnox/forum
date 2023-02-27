@@ -11,7 +11,7 @@ namespace OtadForum
 {
 
 
-    public partial class New_Discussion
+    public partial class NewForum
     {
 
         /// <summary>
@@ -78,76 +78,67 @@ namespace OtadForum
         protected global::System.Web.UI.WebControls.Label Label1;
 
         /// <summary>
-        /// Control lnkDiscussions.
+        /// Control lnkForums.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkDiscussions;
+        protected global::System.Web.UI.WebControls.LinkButton lnkForums;
 
         /// <summary>
-        /// Control lnkNewDiscussion.
+        /// Control lnkNewForum.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkNewDiscussion;
+        protected global::System.Web.UI.WebControls.LinkButton lnkNewForum;
 
         /// <summary>
-        /// Control PanelDiscuss.
+        /// Control PanelForum.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel PanelDiscuss;
+        protected global::System.Web.UI.WebControls.Panel PanelForum;
 
         /// <summary>
-        /// Control drpForumName.
+        /// Control txtForumName.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList drpForumName;
+        protected global::System.Web.UI.WebControls.TextBox txtForumName;
 
         /// <summary>
-        /// Control txtDiscuss_Topic.
+        /// Control txtForumAdmin.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDiscuss_Topic;
+        protected global::System.Web.UI.WebControls.TextBox txtForumAdmin;
 
         /// <summary>
-        /// Control txtDiscuss_Category.
+        /// Control txtForumEmail.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList txtDiscuss_Category;
+        protected global::System.Web.UI.WebControls.TextBox txtForumEmail;
 
         /// <summary>
-        /// Control txtDiscussion.
+        /// Control lnkCreateForum.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDiscussion;
-
-        /// <summary>
-        /// Control lnkPost.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkPost;
+        protected global::System.Web.UI.WebControls.LinkButton lnkCreateForum;
 
         /// <summary>
         /// Control Panel3.
@@ -166,15 +157,6 @@ namespace OtadForum
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtTime;
-
-        /// <summary>
-        /// Control txtDay.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDay;
 
         /// <summary>
         /// Control txtDate.

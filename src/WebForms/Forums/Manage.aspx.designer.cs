@@ -11,7 +11,7 @@ namespace OtadForum
 {
 
 
-    public partial class Manage_Forums
+    public partial class ManageForums
     {
 
         /// <summary>

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Start New Discussion" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="New_Discussion.aspx.cs" Inherits="OtadForum.New_Discussion" %>
+﻿<%@ Page Title="Start New Discussion" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="New.aspx.cs" Inherits="OtadForum.NewDiscussion" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
@@ -37,8 +37,7 @@
     <asp:Panel ID="PanelReport" runat="server" Visible="False">
         <asp:Label ID="Label1" runat="server"></asp:Label>
         &nbsp;
-        <asp:LinkButton ID="lnkDiscussions" runat="server" Font-Bold="False"
-            Font-Names="Arial" Font-Underline="False" OnClick="lnkDiscussions_Click">view discussions</asp:LinkButton>
+        <asp:HyperLink ID="hlDiscussions" runat="server" NavigateUrl="~/Discussions/View.aspx">view discussions</asp:HyperLink>
         &nbsp;
         <asp:LinkButton ID="lnkNewDiscussion" runat="server" Font-Bold="False"
             Font-Names="Arial" Font-Underline="False" OnClick="lnkNewDiscussion_Click">start another discussion</asp:LinkButton>
