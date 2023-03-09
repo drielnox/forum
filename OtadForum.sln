@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33414.496
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebForms", "src\WebForms\WebForms.csproj", "{D0461632-4CB8-4D45-8092-05031B9B9329}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{8207FA5B-2F4E-46EA-AAA4-AA5C7EF36848}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Business", "Business", "{1C039011-C19D-4939-A85D-F9920BC55295}"
@@ -13,22 +11,45 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{3DA3AAD7-0
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Transversal", "Transversal", "{3E80A514-F698-4C9D-918A-2AA4A0C18DCD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebForms", "src\Presentation\WebForms\WebForms.csproj", "{417635EA-588B-4AA2-8871-F877DFF9C425}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "src\Business\Entities\Entities.csproj", "{ECCBD377-64AB-4A25-A673-0298546079B9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persistence", "Data\Persistence\Persistence.csproj", "{0F790056-B587-4E7B-AF3D-924FE72DB008}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persistence.Abstractions", "src\Persistence.Abstractions\Persistence.Abstractions.csproj", "{40C3CDBD-9BD3-4229-BA6C-F1EF05AA3FA5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D0461632-4CB8-4D45-8092-05031B9B9329}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D0461632-4CB8-4D45-8092-05031B9B9329}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D0461632-4CB8-4D45-8092-05031B9B9329}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D0461632-4CB8-4D45-8092-05031B9B9329}.Release|Any CPU.Build.0 = Release|Any CPU
+		{417635EA-588B-4AA2-8871-F877DFF9C425}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{417635EA-588B-4AA2-8871-F877DFF9C425}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{417635EA-588B-4AA2-8871-F877DFF9C425}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{417635EA-588B-4AA2-8871-F877DFF9C425}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECCBD377-64AB-4A25-A673-0298546079B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECCBD377-64AB-4A25-A673-0298546079B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECCBD377-64AB-4A25-A673-0298546079B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECCBD377-64AB-4A25-A673-0298546079B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F790056-B587-4E7B-AF3D-924FE72DB008}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F790056-B587-4E7B-AF3D-924FE72DB008}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F790056-B587-4E7B-AF3D-924FE72DB008}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F790056-B587-4E7B-AF3D-924FE72DB008}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40C3CDBD-9BD3-4229-BA6C-F1EF05AA3FA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40C3CDBD-9BD3-4229-BA6C-F1EF05AA3FA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40C3CDBD-9BD3-4229-BA6C-F1EF05AA3FA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40C3CDBD-9BD3-4229-BA6C-F1EF05AA3FA5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{D0461632-4CB8-4D45-8092-05031B9B9329} = {8207FA5B-2F4E-46EA-AAA4-AA5C7EF36848}
+		{417635EA-588B-4AA2-8871-F877DFF9C425} = {8207FA5B-2F4E-46EA-AAA4-AA5C7EF36848}
+		{ECCBD377-64AB-4A25-A673-0298546079B9} = {1C039011-C19D-4939-A85D-F9920BC55295}
+		{0F790056-B587-4E7B-AF3D-924FE72DB008} = {3DA3AAD7-026A-493E-AB1B-27085BF3F326}
+		{40C3CDBD-9BD3-4229-BA6C-F1EF05AA3FA5} = {3DA3AAD7-026A-493E-AB1B-27085BF3F326}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6CD939FE-D1F5-443C-8777-E46370D46C5A}
