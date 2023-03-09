@@ -40,37 +40,30 @@ namespace OtadForum
         {
             try
             {
-
-                con.Open();
-                cmd = con.CreateCommand();
-                cmd.CommandText = "Select * from forum_users where username = '" + txtUsername.Text + "' and password= '" + txtPassword.Text + "' ";
-                dr = cmd.ExecuteReader();
-
-                if (dr.HasRows)
+                using (var ctx = new ForumContext())
                 {
-                    PanelForum.Visible = true;
-                    PanelLogin.Visible = false;
-                    lblError.Visible = false;
+                    var user = ctx.Users.SingleOrDefault(x => x.UserName == txtUsername.Text && x.Password == txtPassword.Text);
+                    if (user != null)
+                    {
+                        PanelForum.Visible = true;
+                        PanelLogin.Visible = false;
+                        lblError.Visible = false;
 
-                    txtPosted_by.Text = txtUsername.Text;
-                    con.Close();
-                }
-                else
-                {
-                    lblError.Text = "Invalid Login Details! Try Again";
-                    lblError.Visible = true;
+                        txtPosted_by.Text = txtUsername.Text;
+                    }
+                    else
+                    {
+                        lblError.Text = "Invalid Login Details! Try Again";
+                        lblError.Visible = true;
 
-                    txtUsername.Text = "";
-                    txtPassword.Text = "";
-
-                    con.Close();
-
+                        txtUsername.Text = string.Empty;
+                        txtPassword.Text = string.Empty;
+                    }
                 }
             }
             catch (Exception err)
             {
-                lblError.Visible = true;
-                lblError.Text = "Error: " + err.Message;
+                ShowError(err.Message);
             }
         }
 
@@ -179,6 +172,12 @@ namespace OtadForum
                 lblError.Text = "Error: " + err.Message;
             }
 
+        }
+
+        private void ShowError(string message)
+        {
+            lblError.Visible = true;
+            lblError.Text = $"Error: {message}";
         }
     }
 }

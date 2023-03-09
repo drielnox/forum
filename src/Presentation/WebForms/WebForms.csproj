@@ -319,7 +319,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Data\Persistence\Persistence.csproj">
+    <ProjectReference Include="..\..\Data\Persistence\Persistence.csproj">
       <Project>{0F790056-B587-4E7B-AF3D-924FE72DB008}</Project>
       <Name>Persistence</Name>
     </ProjectReference>
@@ -327,7 +327,7 @@
       <Project>{ECCBD377-64AB-4A25-A673-0298546079B9}</Project>
       <Name>Entities</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Persistence.Abstractions\Persistence.Abstractions.csproj">
+    <ProjectReference Include="..\..\Data\Persistence.Abstractions\Persistence.Abstractions.csproj">
       <Project>{40C3CDBD-9BD3-4229-BA6C-F1EF05AA3FA5}</Project>
       <Name>Persistence.Abstractions</Name>
     </ProjectReference>

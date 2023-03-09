@@ -12,7 +12,9 @@ namespace OtadForum
     public partial class ViewForums : Page
     {
         //declaration of variables to be used within the program
-        private string frname, id, id1;
+        private string frname;
+        private string id;
+        private string id1;
 
         protected void Page_Load(object sender, EventArgs e)
         {

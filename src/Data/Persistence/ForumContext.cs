@@ -1,4 +1,5 @@
-﻿using Entities;
+﻿using drielnox.Forum.Business.Entities;
+using Entities;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Persistence.Mapping;
@@ -8,6 +9,7 @@ namespace Persistence
     public class ForumContext : DbContext
     {
         public virtual DbSet<Forum> Forums { get; set; }
+        public virtual DbSet<User> Users { get; set; }
 
         public ForumContext()
         {
@@ -28,6 +30,7 @@ namespace Persistence
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.ApplyConfiguration(new UserTypeConfiguration());
             modelBuilder.ApplyConfiguration(new CommentTypeConfiguration());
             modelBuilder.ApplyConfiguration(new CategoryTypeConfiguration());
             modelBuilder.ApplyConfiguration(new DiscussionTypeConfiguration());

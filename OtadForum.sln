@@ -15,9 +15,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebForms", "src\Presentatio
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "src\Business\Entities\Entities.csproj", "{ECCBD377-64AB-4A25-A673-0298546079B9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persistence", "Data\Persistence\Persistence.csproj", "{0F790056-B587-4E7B-AF3D-924FE72DB008}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persistence", "src\Data\Persistence\Persistence.csproj", "{0F790056-B587-4E7B-AF3D-924FE72DB008}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persistence.Abstractions", "src\Persistence.Abstractions\Persistence.Abstractions.csproj", "{40C3CDBD-9BD3-4229-BA6C-F1EF05AA3FA5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persistence.Abstractions", "src\Data\Persistence.Abstractions\Persistence.Abstractions.csproj", "{40C3CDBD-9BD3-4229-BA6C-F1EF05AA3FA5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
