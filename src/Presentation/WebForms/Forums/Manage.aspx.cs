@@ -4,76 +4,46 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Data;
-using MySql.Data.MySqlClient;
+using Persistence;
+using Entities;
 
 namespace OtadForum
 {
     public partial class ManageForums : Page
     {
-        //declaration of variables to be used within the program
-        private string id;
-        private MySqlConnection con;
-        private MySqlDataAdapter adap;
-        private DataSet ds1;
-        private MySqlDataReader dr;
-        private MySqlCommand cmd;
-
         protected void Page_Load(object sender, EventArgs e)
         {
-            try
-            {
-                //link to connection string for the C# application and MySql database (full details in web.config file)
-                con = new MySqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["MySQLConnection"].ConnectionString);
-                con.Open();
-                txtUsername.Focus();
-
-                Load_Forums();
-            }
-            catch (Exception err)
-            {
-                lblError.Visible = true;
-                lblError.Text = "Error: " + err.Message;
-
-            }
-            con.Close();
+            txtUsername.Focus();
+            Load_Forums();
         }
+
         // logging into database as an Admin to manage available forums
         protected void btnLogin_Click(object sender, EventArgs e)
         {
             try
             {
-                con.Open();
-                cmd = con.CreateCommand();
-                cmd.CommandText = "Select * from forum_users where username = '" + txtUsername.Text + "' and password= '" + txtPassword.Text + "' ";
-                dr = cmd.ExecuteReader();
-
-                if (dr.HasRows)
+                using (var ctx = new ForumContext())
                 {
+                    if (ctx.Users.Any(x => x.UserName == txtUsername.Text && x.Password == txtPassword.Text))
+                    {
+                        PanelForums.Visible = true;
+                        PanelLogin.Visible = false;
+                        lblError.Visible = false;
 
-                    PanelForums.Visible = true;
-                    PanelLogin.Visible = false;
-                    lblError.Visible = false;
+                        txtPosted_by.Text = txtUsername.Text;
+                    }
+                    else
+                    {
+                        txtUsername.Text = string.Empty;
+                        txtPassword.Text = string.Empty;
 
-                    txtPosted_by.Text = txtUsername.Text;
-                    con.Close();
-                }
-                else
-                {
-                    lblError.Text = "Invalid Login Details! Try Again";
-                    lblError.Visible = true;
-
-                    txtUsername.Text = "";
-                    txtPassword.Text = "";
-
-                    con.Close();
-
+                        throw new ApplicationException("Invalid Login Details! Try Again");
+                    }
                 }
             }
             catch (Exception err)
             {
-                lblError.Visible = true;
-                lblError.Text = "Error: " + err.Message;
+                ShowError(err.Message);
             }
         }
 
@@ -84,7 +54,6 @@ namespace OtadForum
             Load_Forum_Details();
             PanelForums.Visible = false;
             PanelForum.Visible = true;
-
         }
 
         // load forum id into textfield for further reviews
@@ -92,17 +61,12 @@ namespace OtadForum
         {
             try
             {
-                con.Open();
-                id = grdForums.SelectedRow.Cells[0].Text;
-                txtForumID.Text = id;
-
+                txtForumID.Text = grdForums.SelectedRow.Cells[0].Text;
             }
             catch (Exception err)
             {
-                lblError.Visible = true;
-                lblError.Text = "Error: " + err.Message;
+                ShowError(err.Message);
             }
-            con.Close();
         }
 
         // load selected forum details for updating routines
@@ -110,97 +74,100 @@ namespace OtadForum
         {
             try
             {
-                con.Open();
-                MySqlCommand cmd = con.CreateCommand();
-                cmd.CommandText = "Select * from forums where forum_id = '" + txtForumID.Text + "' ";
-                dr = cmd.ExecuteReader();
-
-                if (dr.Read())
+                using (var ctx = new ForumContext())
                 {
-                    txtForumName.Text = Convert.ToString(dr[1]);
-                    txtForumAdmin.Text = Convert.ToString(dr[2]);
-                    txtForumEmail.Text = Convert.ToString(dr[3]);
-
-                    con.Close();
+                    var forum = ctx.Forums.SingleOrDefault(x => x.Identifier == int.Parse(txtForumID.Text));
+                    if (forum != null)
+                    {
+                        txtForumName.Text = forum.Name;
+                        txtForumAdmin.Text = forum.Administrator;
+                        txtForumEmail.Text = forum.Email;
+                    }
                 }
             }
             catch (Exception err)
             {
-                lblError.Visible = true;
-                lblError.Text = "Error: " + err.Message;
+                ShowError(err.Message);
             }
         }
 
         // display forums on webpage if login is granted
         protected void Load_Forums()
         {
+            HideError();
+
             try
             {
-                //con.Open();
-                MySqlCommand cmd = con.CreateCommand();
-                cmd.CommandText = "SELECT * FROM forums";
-
-                adap = new MySqlDataAdapter(cmd);
-                ds1 = new DataSet();
-                adap.Fill(ds1, "forum");
-
-                grdForums.DataSource = ds1.Tables[0];
-                grdForums.DataBind();
-
-                lblError.Visible = false;
+                using (var ctx = new ForumContext())
+                {
+                    var forums = ctx.Forums.ToList();
+                    grdForums.DataSource = forums;
+                    grdForums.DataBind();
+                }
             }
             catch (Exception err)
             {
-                lblError.Visible = true;
-                lblError.Text = "Error: " + err.Message;
+                ShowError(err.Message);
             }
+        }
 
-            //con.Close();
+        private void HideError()
+        {
+            lblError.Visible = false;
+        }
+
+        private void ShowError(string message)
+        {
+            lblError.Visible = true;
+            lblError.Text = $"Error: {message}";
         }
 
         // save updated details into selected forum's record
         protected void lnkUpdateForum_Click(object sender, EventArgs e)
         {
-            con.Open();
+            HideError();
+
             try
             {
                 txtTime.Text = DateTime.Now.ToString("HH:mm");
                 txtDate.Text = DateTime.Now.ToLongDateString();
                 txtDateTime.Text = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
 
-                if (txtForumName.Text == "") { lblError.Visible = true; lblError.Text = "Please enter Forum Name"; }
-                else if (txtForumAdmin.Text == "") { lblError.Visible = true; lblError.Text = "Please enter Forum Administrator's name"; }
-                else if (txtForumEmail.Text == "") { lblError.Visible = true; lblError.Text = "Empty field: Forum's Email Address"; }
-
-                else
+                if (string.IsNullOrWhiteSpace(txtForumName.Text))
                 {
-                    cmd = con.CreateCommand();
-                    cmd.CommandText = "UPDATE forums SET forum_name=@forum_name, forum_admin=@forum_admin, forum_email=@forum_email, date_amended=@date_amended, time_amended=@time_amended, date_log_amended=@date_log_amended, amended_by=@amended_by WHERE forum_id = '" + txtForumID.Text + "' ;";
-
-                    cmd.Parameters.AddWithValue("@forum_name", txtForumName.Text);
-                    cmd.Parameters.AddWithValue("@forum_admin", txtForumAdmin.Text);
-                    cmd.Parameters.AddWithValue("@forum_email", txtForumEmail.Text);
-                    cmd.Parameters.AddWithValue("@date_amended", txtDate.Text);
-                    cmd.Parameters.AddWithValue("@time_amended", txtTime.Text);
-                    cmd.Parameters.AddWithValue("@date_log_amended", txtDateTime.Text);
-                    cmd.Parameters.AddWithValue("@amended_by", txtUsername.Text);
-
-                    cmd.ExecuteNonQuery();
-
-                    Label1.Text = "You have successfully updated " + txtForumName.Text + " Forum";
-                    PanelReport.Visible = true;
-                    PanelReport.Focus();
-
-                    lblError.Visible = false;
+                    throw new ApplicationException("Please enter Forum Name");
                 }
 
+                if (string.IsNullOrWhiteSpace(txtForumAdmin.Text))
+                {
+                    throw new ApplicationException("Please enter Forum Administrator's name");
+                }
+
+                if (string.IsNullOrWhiteSpace(txtForumEmail.Text))
+                {
+                    throw new ApplicationException("Empty field: Forum's Email Address");
+                }
+
+                using (var ctx = new ForumContext())
+                {
+                    var forum = ctx.Forums.Single(x => x.Identifier == int.Parse(txtForumID.Text));
+                    forum.Name = txtForumName.Text;
+                    forum.Administrator = txtForumAdmin.Text;
+                    forum.Email = txtForumEmail.Text;
+                    forum.AmendedAt = DateTime.UtcNow;
+                    forum.AmendedBy = txtUsername.Text;
+
+                    ctx.SaveChanges();
+                }
+
+                Label1.Text = "You have successfully updated " + txtForumName.Text + " Forum";
+                PanelReport.Visible = true;
+                PanelReport.Focus();
             }
             catch (Exception err)
             {
-                lblError.Visible = true;
-                lblError.Text = "Error: " + err.Message;
+                ShowError(err.Message);
             }
-            con.Close();
         }
 
         // display all forums on gridview control and hide other details
@@ -209,9 +176,6 @@ namespace OtadForum
             PanelForums.Visible = true;
             PanelForum.Visible = false;
             PanelReport.Visible = false;
-
         }
-
-
     }
 }

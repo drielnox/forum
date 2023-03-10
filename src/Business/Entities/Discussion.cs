@@ -18,6 +18,7 @@ namespace Entities
         public int ViewCount { get; set; }
         public DateTime CreatedAt { get; set; }
         public string CreatedBy { get; set; }
+        public int CommentsCount => Comments.Count;
         public ISet<Comment> Comments { get; set; }
 
         public Discussion()

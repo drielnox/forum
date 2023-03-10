@@ -18,18 +18,17 @@
             <asp:GridView ID="grdTopics" runat="server" AllowPaging="True" AutoGenerateColumns="False" BackColor="#CCCCCC" BorderColor="#999999" BorderStyle="Solid" BorderWidth="3px" CellPadding="4" CellSpacing="2" EnableSortingAndPagingCallbacks="True" Font-Bold="False" Font-Size="Medium" ForeColor="Black" HeaderStyle-BackColor="#3AC0F2" HeaderStyle-ForeColor="White" OnSelectedIndexChanged="grdTopics_SelectedIndexChanged" Style="text-align: justify" Width="906px">
                 <RowStyle BackColor="White" HorizontalAlign="Left" Width="10px" Wrap="True" />
                 <Columns>
-                    <asp:BoundField DataField="post_id" HeaderText="ID" ItemStyle-Width="150">
+                    <asp:BoundField DataField="Identifier" HeaderText="ID" ItemStyle-Width="150">
                         <ItemStyle Width="50px" />
                     </asp:BoundField>
-                    <asp:ButtonField CommandName="Select" DataTextField="post_subject" HeaderText="Subject_of_Discussion" ItemStyle-Width="150" Text="Title">
+                    <asp:ButtonField CommandName="Select" DataTextField="Subject" HeaderText="Subject_of_Discussion" ItemStyle-Width="150" Text="Title">
                         <ItemStyle Width="50px" />
                     </asp:ButtonField>
-                    <asp:BoundField DataField="forum_name" HeaderText="Forum" />
-                    <asp:BoundField DataField="posted_by" HeaderText="Posted_by" />
-                    <asp:BoundField DataField="post_date" HeaderText="Date" />
-                    <asp:BoundField DataField="post_time" HeaderText="Time" />
-                    <asp:BoundField DataField="comments" HeaderText="Comments" />
-                    <asp:BoundField DataField="views" HeaderText="Views" />
+                    <asp:BoundField DataField="ForumId" HeaderText="Forum" />
+                    <asp:BoundField DataField="CreatedBy" HeaderText="Posted_by" />
+                    <asp:BoundField DataField="CreatedAt" HeaderText="Date" />
+                    <asp:BoundField DataField="CommentsCount" HeaderText="Comments" />
+                    <asp:BoundField DataField="ViewCount" HeaderText="Views" />
                 </Columns>
                 <FooterStyle BackColor="#CC6600" />
                 <PagerStyle BackColor="#CC6600" ForeColor="White" HorizontalAlign="Center" />

@@ -39,7 +39,10 @@ namespace Persistence.Mapping
                 .HasMaxLength(100)
                 .IsRequired();
 
-            builder.HasOne(x => x.RelatedDiscussion);
+            builder.HasOne(x => x.RelatedDiscussion)
+                .WithMany(x => x.Comments)
+                .HasPrincipalKey(x => x.Identifier)
+                .HasForeignKey(x => x.DiscussionId);
         }
     }
 }

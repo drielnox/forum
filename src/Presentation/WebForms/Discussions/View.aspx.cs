@@ -5,65 +5,51 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
-using MySql.Data.MySqlClient;
+using Persistence;
+using Microsoft.EntityFrameworkCore;
 
 namespace OtadForum
 {
     public partial class ViewDiscussions : Page
     {
-        //declaration of variables to be used within the program
-        private string id, a, id1;
-        private MySqlConnection con;
-        private MySqlDataAdapter adap;
-        private DataSet ds1;
-
         protected void Page_Load(object sender, EventArgs e)
         {
-            try
-            {
-                //link to connection string for the C# application and MySql database (full details in web.config file)
-                con = new MySqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["MySQLConnection"].ConnectionString);
-                con.Open();
-                Load_Topics();
+            Load_Topics();
+        }
 
-            }
-            catch (Exception err)
-            {
-                lblError.Visible = true;
-                lblError.Text = "Error: " + err.Message;
-
-            }
-
-            con.Close();
+        private void ShowError(string message)
+        {
+            lblError.Visible = true;
+            lblError.Text = $"Error: {message}";
         }
 
         // display discussion topics on gridview control
         protected void Load_Topics()
         {
+            HideError();
+
             try
             {
-                //con.Open();
-                MySqlCommand cmd = con.CreateCommand();
-                cmd.CommandText = "SELECT * FROM forum_discussions";
-                //cmd.CommandText = "SELECT * FROM forum_discussions where surname like " + "'" + txtSearch.Text + "%' and  group_name in ('clients') or firstname like " + "'" + txtSearch.Text + "%' and  group_name in ('clients') or customer_id like " + "'" + txtSearch.Text + "%' and  group_name in ('clients') or group_status like " + "'" + txtSearch.Text + "%' and  group_name in ('clients') or email like " + "'" + txtSearch.Text + "%' and  group_name in ('clients') or institution like " + "'" + txtSearch.Text + "%' and  group_name in ('clients') ";
+                using (var ctx = new ForumContext())
+                {
+                    var discussions = ctx.Forums
+                        .SelectMany(x => x.Discussions)
+                        .Include(x => x.Comments)
+                        .ToList();
 
-                adap = new MySqlDataAdapter(cmd);
-                ds1 = new DataSet();
-                adap.Fill(ds1, "forum");
-
-                grdTopics.DataSource = ds1.Tables[0];
-                grdTopics.DataBind();
-
-                lblError.Visible = false;
-
+                    grdTopics.DataSource = discussions;
+                    grdTopics.DataBind();
+                }
             }
             catch (Exception err)
             {
-                lblError.Visible = true;
-                lblError.Text = "Error: " + err.Message;
+                ShowError(err.Message);
             }
+        }
 
-            //con.Close();
+        private void HideError()
+        {
+            lblError.Visible = false;
         }
 
         // save topic-id of selected discussion in textfield for futher referencing in other modules
@@ -71,22 +57,12 @@ namespace OtadForum
         {
             try
             {
-                //con.Open();
-                id = grdTopics.SelectedRow.Cells[0].Text;
-                txtTopicID.Text = id;
-
-                a = txtTopicID.Text;
-
-                MySqlCommand cmd = con.CreateCommand();
-                cmd.CommandText = "Select * from forum_discussions where post_id = '" + a + "' ";
-                cmd.ExecuteReader();
+                txtTopicID.Text = grdTopics.SelectedRow.Cells[0].Text;
             }
             catch (Exception err)
             {
-                lblError.Visible = true;
-                lblError.Text = "Error: " + err.Message;
+                ShowError(err.Message);
             }
-            //con.Close();
         }
 
         //generating date-time logs for each routine on this module
@@ -95,35 +71,23 @@ namespace OtadForum
             txtTime.Text = DateTime.Now.ToString("HH:mm");
             txtDate.Text = DateTime.Now.ToLongDateString();
             txtDateTime.Text = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
-            txtPosted_by.Text = "";
+            txtPosted_by.Text = string.Empty;
 
         }
 
         // show selected discussion's contents referencing the saved topic-id and loading-up the discussion content's module
         protected void grdTopics_SelectedIndexChanged(object sender, EventArgs e)
         {
-            con.Open();
-
             Load_topicID_Textfield();
             show_textvalue();
 
-            Response.Redirect("discussion.aspx");
-
-            con.Close();
+            Response.Redirect("~/Discussions/View.aspx");
         }
 
         //showing text value on multiple page
         protected void show_textvalue()
         {
-            id1 = txtTopicID.Text;
-            Session["Value"] = id1;
-
-            //copy this syntax to other pages:
-
-            //string id1;   
-            //id1 = (string)(Session["Value"]); 
-            //lblLogUser.Text = id1;
-
+            Session["Value"] = txtTopicID.Text;
         }
     }
 }

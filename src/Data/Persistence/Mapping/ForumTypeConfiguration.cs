@@ -75,8 +75,7 @@ namespace Persistence.Mapping
             builder.HasMany(x => x.Discussions)
                 .WithOne(x => x.Forum)
                 .HasPrincipalKey(x => x.Identifier)
-                .HasForeignKey(x => x.ForumId)
-                .HasConstraintName("FK_Forums_Discussions_1");
+                .HasForeignKey(x => x.ForumId);
 
             builder.HasData(_sampleData);
         }
