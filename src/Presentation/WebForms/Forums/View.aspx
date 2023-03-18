@@ -12,34 +12,14 @@
             <asp:LinkButton ID="LinkButton2" runat="server" Font-Bold="False" Font-Size="Small">Refresh Discussions</asp:LinkButton>
         </span>
         <div style="height: 216px">
-            <asp:GridView ID="grdForums" runat="server" AllowPaging="True"
-                AutoGenerateColumns="False" BackColor="#CCCCCC" BorderColor="#999999"
-                BorderStyle="Solid" BorderWidth="3px" CellPadding="4" CellSpacing="2"
-                EnableSortingAndPagingCallbacks="True" Font-Bold="False" Font-Size="Medium"
-                ForeColor="Black" HeaderStyle-BackColor="#3AC0F2" HeaderStyle-ForeColor="White"
-                OnSelectedIndexChanged="grdForums_SelectedIndexChanged"
-                Style="text-align: justify" Width="914px">
-                <rowstyle backcolor="White" horizontalalign="Left" width="10px" wrap="True" />
-                <columns>
-                    <asp:BoundField DataField="Name" HeaderText="Name" ItemStyle-Width="150">
-                    <itemstyle width="50px" />
-                    </asp:BoundField>
+            <asp:GridView ID="grdForums" CssClass="table" AllowPaging="True" AutoGenerateColumns="False" EnableSortingAndPagingCallbacks="True" OnSelectedIndexChanged="grdForums_SelectedIndexChanged" runat="server">
+                <Columns>
+                    <asp:BoundField DataField="Name" HeaderText="Name"></asp:BoundField>
                     <asp:BoundField DataField="Administrator" HeaderText="Administrator" />
                     <asp:BoundField DataField="Email" HeaderText="Email" />
                     <asp:BoundField DataField="CreatedAt" HeaderText="Created" />
-                    <asp:ButtonField CommandName="Select" HeaderText="Go..."
-                        ItemStyle-Width="150" ShowHeader="True" Text="View">
-                        <itemstyle width="50px" />
-                    </asp:ButtonField>
-                </columns>
-                <footerstyle backcolor="#CCCCCC" />
-                <pagerstyle backcolor="#CC6600" forecolor="White" horizontalalign="Center" />
-                <selectedrowstyle backcolor="#000099" font-bold="True" forecolor="White" />
-                <headerstyle backcolor="#CC6600" font-bold="True" forecolor="White" />
-                <sortedascendingcellstyle backcolor="#F1F1F1" />
-                <sortedascendingheaderstyle backcolor="#808080" />
-                <sorteddescendingcellstyle backcolor="#CAC9C9" />
-                <sorteddescendingheaderstyle backcolor="#383838" />
+                    <asp:ButtonField CommandName="Select" HeaderText="Go..." Text="View"></asp:ButtonField>
+                </Columns>
             </asp:GridView>
         </div>
         <br />
@@ -80,37 +60,16 @@
             <div style="text-align: right">
                 <asp:LinkButton ID="LinkButton1" runat="server">Refresh Discussions</asp:LinkButton>
                 <br />
-                <asp:GridView ID="grdTopics" runat="server" AllowPaging="True"
-                    AllowSorting="True" AutoGenerateColumns="False" BackColor="#CCCCCC"
-                    BorderColor="#999999" BorderStyle="Solid" BorderWidth="3px" CellPadding="4"
-                    CellSpacing="2" EnableSortingAndPagingCallbacks="True" Font-Bold="False"
-                    Font-Size="Medium" ForeColor="Black" HeaderStyle-BackColor="#3AC0F2"
-                    HeaderStyle-ForeColor="White" Height="359px"
-                    OnSelectedIndexChanged="grdTopics_SelectedIndexChanged"
-                    Style="text-align: justify" Width="906px">
-                    <rowstyle backcolor="White" horizontalalign="Left" width="10px" wrap="True" />
-                    <columns>
-                        <asp:BoundField DataField="post_id" HeaderText="ID" ItemStyle-Width="150">
-                            <itemstyle width="50px" />
-                        </asp:BoundField>
-                        <asp:ButtonField CommandName="Select" DataTextField="post_subject"
-                            HeaderText="Subject_of_Discussion" ItemStyle-Width="150" Text="Title">
-                            <itemstyle width="50px" />
-                        </asp:ButtonField>
+                <asp:GridView ID="grdTopics" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" EnableSortingAndPagingCallbacks="True" OnSelectedIndexChanged="grdTopics_SelectedIndexChanged">
+                    <Columns>
+                        <asp:BoundField DataField="post_id" HeaderText="ID"></asp:BoundField>
+                        <asp:ButtonField CommandName="Select" DataTextField="post_subject" HeaderText="Subject_of_Discussion" Text="Title"></asp:ButtonField>
                         <asp:BoundField DataField="posted_by" HeaderText="Posted_by" />
                         <asp:BoundField DataField="post_date" HeaderText="Date" />
                         <asp:BoundField DataField="post_time" HeaderText="Time" />
                         <asp:BoundField DataField="comments" HeaderText="Comments" />
                         <asp:BoundField DataField="views" HeaderText="Views" />
-                    </columns>
-                    <footerstyle backcolor="#CCCCCC" />
-                    <pagerstyle backcolor="#CC6600" forecolor="White" horizontalalign="Center" />
-                    <selectedrowstyle backcolor="#000099" font-bold="True" forecolor="White" />
-                    <headerstyle backcolor="#CC6600" font-bold="True" forecolor="White" />
-                    <sortedascendingcellstyle backcolor="#F1F1F1" />
-                    <sortedascendingheaderstyle backcolor="#808080" />
-                    <sorteddescendingcellstyle backcolor="#CAC9C9" />
-                    <sorteddescendingheaderstyle backcolor="#383838" />
+                    </Columns>
                 </asp:GridView>
             </div>
         </asp:Panel>

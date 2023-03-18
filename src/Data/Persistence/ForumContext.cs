@@ -9,6 +9,7 @@ namespace Persistence
     public class ForumContext : DbContext
     {
         public virtual DbSet<Forum> Forums { get; set; }
+        public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<User> Users { get; set; }
 
         public ForumContext()

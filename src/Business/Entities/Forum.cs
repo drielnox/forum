@@ -19,5 +19,23 @@ namespace Entities
         {
             Discussions = new HashSet<Discussion>();
         }
+
+        public void AddDiscussion(Category category, string subject, string content, string postedBy)
+        {
+            var discussion = new Discussion()
+            {
+                Forum = this,
+                ForumId = Identifier,
+                Subject = subject,
+                Content = content,
+                Category = category,
+                CategoryId = category.Identifier,
+                CreatedAt = DateTime.UtcNow,
+                CreatedBy = postedBy,
+                ViewCount = 0
+            };
+
+            Discussions.Add(discussion);
+        }
     }
 }

@@ -34,21 +34,19 @@ namespace OtadForum
                 using (var ctx = new ForumContext())
                 {
                     var user = ctx.Users.SingleOrDefault(x => x.UserName == txtUsername.Text && x.Password == txtPassword.Text);
-                    if (user != null)
-                    {
-                        PanelForum.Visible = true;
-                        PanelLogin.Visible = false;
-                        lblError.Visible = false;
-
-                        txtPosted_by.Text = txtUsername.Text;
-                    }
-                    else
+                    if (user == null)
                     {
                         txtUsername.Text = string.Empty;
                         txtPassword.Text = string.Empty;
 
                         throw new ApplicationException("Invalid Login Details! Try Again");
                     }
+
+                    PanelForum.Visible = true;
+                    PanelLogin.Visible = false;
+                    HideError();
+
+                    txtPosted_by.Text = txtUsername.Text;
                 }
             }
             catch (Exception err)
@@ -154,13 +152,13 @@ namespace OtadForum
 
         private void ShowError(string message)
         {
-            lblError.Visible = true;
-            lblError.Text = $"Error: {message}";
+            pnlError.Visible = true;
+            litError.Text = message;
         }
 
         private void HideError()
         {
-            lblError.Visible = false;
+            pnlError.Visible = false;
         }
     }
 }

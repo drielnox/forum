@@ -3,10 +3,10 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <p align="center">
-        <asp:Label ID="lblError" runat="server" BackColor="Red" Font-Bold="True" Font-Names="Arial" Font-Size="Large" ForeColor="White" Text="E" Visible="False"></asp:Label>
-    </p>
-    <br />
+    <asp:Panel ID="pnlError" CssClass="alert alert-warning alert-dismissible fade show" role="alert" Visible="false" runat="server">
+        <strong>Error</strong> <asp:Literal ID="litError" runat="server"></asp:Literal>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </asp:Panel>
     <asp:Panel ID="PanelLogin" runat="server" Height="199px">
         Confirm your login details to create a new forum<br />
         <div style="width: 572px; height: 173px;">

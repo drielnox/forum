@@ -214,10 +214,13 @@
     <Content Include="Forums\Manage.aspx" />
     <Content Include="Discussions\New.aspx" />
     <Content Include="Forums\New.aspx" />
+    <Content Include="lib\bootstrap\css\bootstrap.css" />
+    <Content Include="lib\bootstrap\css\bootstrap.min.css" />
+    <Content Include="lib\bootstrap\js\bootstrap.bundle.js" />
+    <Content Include="lib\bootstrap\js\bootstrap.bundle.min.js" />
     <Content Include="otad_forum.png" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
-    <Content Include="Styles\Site1.css" />
     <Content Include="Discussions\View.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -300,12 +303,17 @@
     <Folder Include="App_Browsers\" />
     <Folder Include="App_Data\" />
     <Folder Include="Scripts\" />
+    <Folder Include="Styles\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Site.Master" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="libman.json" />
+    <Content Include="lib\bootstrap\css\bootstrap.css.map" />
+    <Content Include="lib\bootstrap\css\bootstrap.min.css.map" />
+    <Content Include="lib\bootstrap\js\bootstrap.bundle.js.map" />
+    <Content Include="lib\bootstrap\js\bootstrap.bundle.min.js.map" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

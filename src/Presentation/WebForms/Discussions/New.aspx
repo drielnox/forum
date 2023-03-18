@@ -39,7 +39,7 @@
         &nbsp;
         <asp:HyperLink ID="hlDiscussions" runat="server" NavigateUrl="~/Discussions/View.aspx">view discussions</asp:HyperLink>
         &nbsp;
-        <asp:LinkButton ID="lnkNewDiscussion" runat="server" Font-Bold="False" Font-Names="Arial" Font-Underline="False" OnClick="lnkNewDiscussion_Click1">start another discussion</asp:LinkButton>
+        <asp:LinkButton ID="lnkNewDiscussion" runat="server" Font-Bold="False" Font-Names="Arial" Font-Underline="False" OnClick="lnkNewDiscussion_Click">start another discussion</asp:LinkButton>
     </asp:Panel>
     <br />
     <panel>
