@@ -81,7 +81,7 @@ namespace OtadForum
             Load_topicID_Textfield();
             show_textvalue();
 
-            Response.Redirect("~/Discussions/View.aspx");
+            Response.Redirect("~/Discussions/Read.aspx");
         }
 
         //showing text value on multiple page

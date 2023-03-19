@@ -25,5 +25,20 @@ namespace Entities
         {
             Comments = new HashSet<Comment>();
         }
+
+        public void AddComment(string content, string commentBy, string email)
+        {
+            var comment = new Comment()
+            {
+                DiscussionId = Identifier,
+                RelatedDiscussion = this,
+                Content = content,
+                CreatedBy = commentBy,
+                CreatedAt = DateTime.UtcNow,
+                Email = email,
+            };
+
+            Comments.Add(comment);
+        }
     }
 }

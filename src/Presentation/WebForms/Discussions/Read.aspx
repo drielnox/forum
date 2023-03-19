@@ -1,14 +1,6 @@
 ﻿<%@ Page Title="View Discussions and Comments" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Read.aspx.cs" Inherits="OtadForum.ReadDiscussion" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
-    <style type="text/css">
-        .style3 {
-            font-family: "Segoe UI";
-            font-weight: bold;
-            font-size: x-large;
-            color: #000000;
-        }
-    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <p align="center">
@@ -16,7 +8,8 @@
             Font-Names="Arial" Font-Size="Large" ForeColor="White" Text="E" Visible="False"></asp:Label>
     </p>
     <br />
-    <span __designer:mapid="4c8" class="style3">Forum Discussions</span><br />
+    <h1>Forum Discussions</h1>
+    <br />
     <br />
     <div style="height: 34px; background-color: #666666; color: #003399; vertical-align: middle;">
         <asp:Label ID="lblForum" runat="server" Font-Bold="True" Font-Size="Large"
