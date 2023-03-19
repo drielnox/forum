@@ -57,7 +57,7 @@ jobs:
 
     env:
       Solution_Name: OtadForum.sln
-      Test_Project_Path: test\Presentation\WebForms.Tests.csproj
+      Test_Project_Path: test\Business\Entities.Tests.csproj
 
     steps:
     - name: Checkout
