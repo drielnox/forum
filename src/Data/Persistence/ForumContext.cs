@@ -22,9 +22,16 @@ namespace Persistence
 
             var conxStringBuilder = new SqlConnectionStringBuilder();
             conxStringBuilder.DataSource = "(LocalDB)\\MSSQLLocalDB";
+            //conxStringBuilder.AttachDBFilename = "|DataDirectory|\\forum.mdf";
+            //conxStringBuilder.InitialCatalog = "Forum";
             conxStringBuilder.IntegratedSecurity = true;
 
             optionsBuilder.UseSqlServer(conxStringBuilder.ToString());
+
+#if DEBUG
+            optionsBuilder.EnableDetailedErrors();
+            optionsBuilder.EnableSensitiveDataLogging();
+#endif
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

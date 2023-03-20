@@ -4,16 +4,14 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <p align="center">
-        <asp:Label ID="lblError" runat="server" BackColor="Red" Font-Bold="True"
-            Font-Names="Arial" Font-Size="Large" ForeColor="White" Text="E" Visible="False"></asp:Label>
+        <asp:Label ID="lblError" runat="server" BackColor="Red" Font-Bold="True" Font-Names="Arial" Font-Size="Large" ForeColor="White" Text="E" Visible="False"></asp:Label>
     </p>
     <br />
     <h1>Forum Discussions</h1>
     <br />
     <br />
     <div style="height: 34px; background-color: #666666; color: #003399; vertical-align: middle;">
-        <asp:Label ID="lblForum" runat="server" Font-Bold="True" Font-Size="Large"
-            ForeColor="White"></asp:Label>
+        <asp:Label ID="lblForum" runat="server" Font-Bold="True" Font-Size="Large" ForeColor="White"></asp:Label>
         <br />
         <br />
         <br />
@@ -31,56 +29,25 @@
         <br />
     </div>
     <div style="height: 26px">
-        <asp:Label ID="lblTopic" runat="server" Font-Bold="True" Font-Size="Medium"
-            ForeColor="Black"></asp:Label>
+        <asp:Label ID="lblTopic" runat="server" Font-Bold="True" Font-Size="Medium" ForeColor="Black"></asp:Label>
     </div>
     <br />
     <br />
     <div>
-        <asp:Label ID="lblDiscussion" runat="server" Font-Names="Arial"
-            Font-Size="Medium" ForeColor="Black" Height="24px" Width="700px"></asp:Label>
+        <asp:Label ID="lblDiscussion" runat="server" Font-Names="Arial" Font-Size="Medium" ForeColor="Black" Height="24px" Width="700px"></asp:Label>
     </div>
-    <br />
-    <div>
-        <br />
-        <asp:GridView ID="grdComments" runat="server" AutoGenerateColumns="False"
-            CellPadding="4" EnableSortingAndPagingCallbacks="True" ForeColor="#333333"
-            GridLines="None" HeaderStyle-BackColor="#3AC0F2" HeaderStyle-ForeColor="White"
-            PageSize="5" Style="text-align: justify" Width="600px">
-            <RowStyle BackColor="#F7F6F3" ForeColor="#333333" HorizontalAlign="Left"
-                Width="10px" Wrap="True" />
-            <Columns>
-                <asp:BoundField DataField="comment_id" HeaderText="Comment_ID"
-                    ItemStyle-Width="150" Visible="False">
-                    <ItemStyle Width="50px" />
-                </asp:BoundField>
-                <asp:BoundField DataField="Comment" HeaderText="Comment" />
-                <asp:BoundField DataField="comment_date" HeaderText="Date" />
-                <asp:BoundField DataField="comment_time" HeaderText="Time" />
-                <asp:BoundField DataField="comment_by" HeaderText="By" />
-                <asp:ButtonField CommandName="Select" ItemStyle-Width="150" Text=".">
-                    <ItemStyle Width="50px" />
-                </asp:ButtonField>
-            </Columns>
-            <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-            <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
-            <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
-            <HeaderStyle BackColor="#99CCFF" Font-Bold="True" ForeColor="Black" />
-            <EditRowStyle BackColor="#999999" HorizontalAlign="Left" />
-            <AlternatingRowStyle BackColor="White" ForeColor="#284775"
-                HorizontalAlign="Left" />
-        </asp:GridView>
-        <br />
-        <br />
-        <asp:LinkButton ID="lnkComment" runat="server" BorderStyle="Inset"
-            Font-Bold="True" Font-Underline="False" OnClick="lnkComment_Click">Comment</asp:LinkButton>
-        &nbsp;&nbsp;&nbsp;
-    </div>
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
+    <hr />
+    <asp:GridView ID="grdComments" CssClass="table" runat="server" AutoGenerateColumns="False" EnableSortingAndPagingCallbacks="True" PageSize="5">
+        <Columns>
+            <asp:BoundField DataField="Identifier" HeaderText="ID" Visible="False"></asp:BoundField>
+            <asp:BoundField DataField="Content" HeaderText="Comment" />
+            <asp:BoundField DataField="CreatedAt" HeaderText="At" />
+            <asp:BoundField DataField="CreatedBy" HeaderText="By" />
+        </Columns>
+    </asp:GridView>
+    <hr />
+    <asp:LinkButton ID="lnkComment" runat="server" OnClick="lnkComment_Click">Comment</asp:LinkButton>
+    <hr />
     <asp:Panel ID="PanelComment" runat="server" Height="420px" Visible="False">
         <strong>Post a comment:</strong><br />
         <br />
@@ -95,13 +62,10 @@
             <br />
             <br />
             <br />
-            <asp:TextBox ID="txtComment" runat="server" CssClass="textEntry" Height="169px"
-                TextMode="MultiLine" Width="473px"></asp:TextBox>
+            <asp:TextBox ID="txtComment" runat="server" CssClass="textEntry" Height="169px" TextMode="MultiLine" Width="473px"></asp:TextBox>
             <br />
             <br />
-            <asp:LinkButton ID="lnkPost" runat="server" BorderStyle="Solid"
-                Font-Bold="True" Font-Underline="False" Height="16px" OnClick="lnkPost_Click"
-                Width="35px">Post</asp:LinkButton>
+            <asp:LinkButton ID="lnkPost" runat="server" BorderStyle="Solid" Font-Bold="True" Font-Underline="False" Height="16px" OnClick="lnkPost_Click" Width="35px">Post</asp:LinkButton>
             <br />
             <br />
             <br />

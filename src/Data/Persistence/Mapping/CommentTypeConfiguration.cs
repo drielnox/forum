@@ -15,7 +15,7 @@ namespace Persistence.Mapping
                 DiscussionId = 1,
                 Content = "Thanks",
                 CreatedAt = new System.DateTime(2014, 4, 14, 21, 22, 0),
-                CreatedBy = null,
+                CreatedBy = string.Empty,
                 Email = "anon@gmail.com"
             },
             new Comment()

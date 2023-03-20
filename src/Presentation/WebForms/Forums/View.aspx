@@ -12,7 +12,7 @@
             <asp:LinkButton ID="LinkButton2" runat="server" Font-Bold="False" Font-Size="Small">Refresh Discussions</asp:LinkButton>
         </span>
         <div style="height: 216px">
-            <asp:GridView ID="grdForums" CssClass="table" AllowPaging="True" AutoGenerateColumns="False" EnableSortingAndPagingCallbacks="True" OnSelectedIndexChanged="grdForums_SelectedIndexChanged" runat="server">
+            <asp:GridView ID="grdForums" CssClass="table" AutoGenerateColumns="False" EnableSortingAndPagingCallbacks="True" OnSelectedIndexChanged="grdForums_SelectedIndexChanged" runat="server">
                 <Columns>
                     <asp:BoundField DataField="Name" HeaderText="Name"></asp:BoundField>
                     <asp:BoundField DataField="Administrator" HeaderText="Administrator" />
@@ -60,15 +60,14 @@
             <div style="text-align: right">
                 <asp:LinkButton ID="LinkButton1" runat="server">Refresh Discussions</asp:LinkButton>
                 <br />
-                <asp:GridView ID="grdTopics" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" EnableSortingAndPagingCallbacks="True" OnSelectedIndexChanged="grdTopics_SelectedIndexChanged">
+                <asp:GridView ID="grdTopics" CssClass="table" runat="server" AutoGenerateColumns="False" EnableSortingAndPagingCallbacks="True" OnSelectedIndexChanged="grdTopics_SelectedIndexChanged">
                     <Columns>
-                        <asp:BoundField DataField="post_id" HeaderText="ID"></asp:BoundField>
-                        <asp:ButtonField CommandName="Select" DataTextField="post_subject" HeaderText="Subject_of_Discussion" Text="Title"></asp:ButtonField>
-                        <asp:BoundField DataField="posted_by" HeaderText="Posted_by" />
-                        <asp:BoundField DataField="post_date" HeaderText="Date" />
-                        <asp:BoundField DataField="post_time" HeaderText="Time" />
-                        <asp:BoundField DataField="comments" HeaderText="Comments" />
-                        <asp:BoundField DataField="views" HeaderText="Views" />
+                        <asp:BoundField DataField="Identifier" HeaderText="ID"></asp:BoundField>
+                        <asp:ButtonField CommandName="Select" DataTextField="Subject" HeaderText="Subject_of_Discussion" Text="Title"></asp:ButtonField>
+                        <asp:BoundField DataField="CreatedBy" HeaderText="By" />
+                        <asp:BoundField DataField="CreatedAt" HeaderText="At" />
+                        <asp:BoundField DataField="CommentsCount" HeaderText="Comments" />
+                        <asp:BoundField DataField="ViewCount" HeaderText="Views" />
                     </Columns>
                 </asp:GridView>
             </div>

@@ -11,11 +11,6 @@ namespace OtadForum
 {
     public partial class ViewForums : Page
     {
-        //declaration of variables to be used within the program
-        private string frname;
-        private string id;
-        private string id1;
-
         protected void Page_Load(object sender, EventArgs e)
         {
             HideError();
@@ -80,8 +75,7 @@ namespace OtadForum
 
             try
             {
-                frname = grdForums.SelectedRow.Cells[1].Text;
-                txtForumName.Text = frname;
+                txtForumName.Text = grdForums.SelectedRow.Cells[0].Text;
             }
             catch (Exception err)
             {
@@ -130,8 +124,7 @@ namespace OtadForum
 
             try
             {
-                id = grdTopics.SelectedRow.Cells[0].Text;
-                txtTopicID.Text = id;
+                txtTopicID.Text = grdTopics.SelectedRow.Cells[0].Text;
             }
             catch (Exception err)
             {
@@ -142,8 +135,7 @@ namespace OtadForum
         // save topic-id of selected topic from 'Forums' module to 'Discussions' module to view topic's full discussion 
         protected void show_textvalue()
         {
-            id1 = txtTopicID.Text;
-            Session["Value"] = id1;
+            Session["Value"] = txtTopicID.Text;
         }
 
         // display topic-id of selected topic on 'Discussions' module and open the 'Discussions' module to view full discussion
