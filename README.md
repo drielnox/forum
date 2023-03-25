@@ -2,10 +2,14 @@
 
 A web-based forum management application. 
 
-Designed using ASP.NET4.0 and C# language (Visual Studio 2010). MySQL5.2 Database server runs as the backend data manager.
+## Designed using:
+- C# language (Visual Studio 2022)
+- NET Framework v4.8
+- ASP.NET v4.5
+- SQL Server LocalDb.
 
 ## Basic Features 
 
-Create and view forums; 
-start discussions and post comments; 
-manage forum users...
+- Create and view forums
+- Start discussions and post comments
+- Manage forum users...
