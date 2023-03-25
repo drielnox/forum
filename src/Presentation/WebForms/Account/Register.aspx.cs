@@ -8,6 +8,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Persistence;
 using drielnox.Forum.Business.Entities;
+using Microsoft.Owin.Security;
 
 namespace drielnox.Forum.Presetation.WebForms.Account
 {
@@ -31,7 +32,10 @@ namespace drielnox.Forum.Presetation.WebForms.Account
 
                 if (result.Succeeded)
                 {
-                    litStatusMessage.Text = string.Format("User {0} was created successfully!", user.UserName);
+                    var authenticationManager = HttpContext.Current.GetOwinContext().Authentication;
+                    var userIdentity = manager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
+                    authenticationManager.SignIn(new AuthenticationProperties() { }, userIdentity);
+                    Response.Redirect("~/Login.aspx");
                 }
                 else
                 {

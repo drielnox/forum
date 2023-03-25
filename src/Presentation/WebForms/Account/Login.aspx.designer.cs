@@ -15,6 +15,33 @@ namespace drielnox.Forum.Presetation.WebForms.Account
     {
 
         /// <summary>
+        /// Control phLoginStatus.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder phLoginStatus;
+
+        /// <summary>
+        /// Control litStatusText.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litStatusText;
+
+        /// <summary>
+        /// Control phLoginForm.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder phLoginForm;
+
+        /// <summary>
         /// Control lblUsername.
         /// </summary>
         /// <remarks>
@@ -24,22 +51,13 @@ namespace drielnox.Forum.Presetation.WebForms.Account
         protected global::System.Web.UI.WebControls.Label lblUsername;
 
         /// <summary>
-        /// Control txtUsername.
+        /// Control txtUserName.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtUsername;
-
-        /// <summary>
-        /// Control rfvUsername.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator rfvUsername;
+        protected global::System.Web.UI.WebControls.TextBox txtUserName;
 
         /// <summary>
         /// Control lblPassword.
@@ -60,24 +78,6 @@ namespace drielnox.Forum.Presetation.WebForms.Account
         protected global::System.Web.UI.WebControls.TextBox txtPassword;
 
         /// <summary>
-        /// Control rfvPassword.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvPassword;
-
-        /// <summary>
-        /// Control lblFailureText.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal lblFailureText;
-
-        /// <summary>
         /// Control btnSubmit.
         /// </summary>
         /// <remarks>
@@ -85,5 +85,14 @@ namespace drielnox.Forum.Presetation.WebForms.Account
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSubmit;
+
+        /// <summary>
+        /// Control phLogoutButton.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder phLogoutButton;
     }
 }
