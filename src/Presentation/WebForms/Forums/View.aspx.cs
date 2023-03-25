@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Persistence;
-using Microsoft.EntityFrameworkCore;
+using System.Data.Entity;
 
 namespace OtadForum
 {

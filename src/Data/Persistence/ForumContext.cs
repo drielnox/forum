@@ -1,48 +1,36 @@
 ﻿using drielnox.Forum.Business.Entities;
 using Entities;
-using Microsoft.Data.SqlClient;
-using Microsoft.EntityFrameworkCore;
-using Persistence.Mapping;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Persistence.Initializers;
+using Persistence.Mappings;
+using System;
+using System.Data.Entity;
 
 namespace Persistence
 {
-    public class ForumContext : DbContext
+    public class ForumContext : IdentityDbContext<User>
     {
         public virtual DbSet<Forum> Forums { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
-        public virtual DbSet<User> Users { get; set; }
 
-        public ForumContext()
+        public ForumContext() 
+            : base("name=LocalDbConnection")
         {
-        }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            base.OnConfiguring(optionsBuilder);
-
-            var conxStringBuilder = new SqlConnectionStringBuilder();
-            conxStringBuilder.DataSource = "(LocalDB)\\MSSQLLocalDB";
-            //conxStringBuilder.AttachDBFilename = "|DataDirectory|\\forum.mdf";
-            //conxStringBuilder.InitialCatalog = "Forum";
-            conxStringBuilder.IntegratedSecurity = true;
-
-            optionsBuilder.UseSqlServer(conxStringBuilder.ToString());
+            Database.SetInitializer(new DevelopmentInitializer());
 
 #if DEBUG
-            optionsBuilder.EnableDetailedErrors();
-            optionsBuilder.EnableSensitiveDataLogging();
+            Database.Log = Console.Write;
 #endif
         }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.ApplyConfiguration(new UserTypeConfiguration());
-            modelBuilder.ApplyConfiguration(new CommentTypeConfiguration());
-            modelBuilder.ApplyConfiguration(new CategoryTypeConfiguration());
-            modelBuilder.ApplyConfiguration(new DiscussionTypeConfiguration());
-            modelBuilder.ApplyConfiguration(new ForumTypeConfiguration());
+            modelBuilder.Configurations.Add(new CommentTypeConfiguration());
+            modelBuilder.Configurations.Add(new CategoryTypeConfiguration());
+            modelBuilder.Configurations.Add(new DiscussionTypeConfiguration());
+            modelBuilder.Configurations.Add(new ForumTypeConfiguration());
         }
     }
 }

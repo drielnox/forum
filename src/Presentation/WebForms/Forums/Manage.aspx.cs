@@ -6,6 +6,9 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Persistence;
 using Entities;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using drielnox.Forum.Business.Entities;
 
 namespace OtadForum
 {
@@ -24,7 +27,11 @@ namespace OtadForum
             {
                 using (var ctx = new ForumContext())
                 {
-                    if (ctx.Users.Any(x => x.UserName == txtUsername.Text && x.Password == txtPassword.Text))
+                    var userStore = new UserStore<User>(ctx);
+                    var userManager = new UserManager<User>(userStore);
+
+                    var user = userManager.Find(txtUsername.Text, txtPassword.Text);
+                    if (user != null) 
                     {
                         PanelForums.Visible = true;
                         PanelLogin.Visible = false;

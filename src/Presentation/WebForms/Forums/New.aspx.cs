@@ -7,6 +7,9 @@ using System.Web.UI.WebControls;
 using System.Net.Mail;
 using Persistence;
 using Entities;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using drielnox.Forum.Business.Entities;
 
 namespace OtadForum
 {
@@ -33,7 +36,10 @@ namespace OtadForum
             {
                 using (var ctx = new ForumContext())
                 {
-                    var user = ctx.Users.SingleOrDefault(x => x.UserName == txtUsername.Text && x.Password == txtPassword.Text);
+                    var userStore = new UserStore<User>(ctx);
+                    var manager = new UserManager<User>(userStore);
+
+                    var user = manager.Find(txtUsername.Text, txtPassword.Text);
                     if (user == null)
                     {
                         txtUsername.Text = string.Empty;

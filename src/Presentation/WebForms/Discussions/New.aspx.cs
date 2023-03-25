@@ -6,6 +6,9 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Net.Mail;
 using Persistence;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity;
+using drielnox.Forum.Business.Entities;
 
 namespace OtadForum
 {
@@ -37,11 +40,15 @@ namespace OtadForum
             {
                 using (var ctx = new ForumContext())
                 {
-                    var user = ctx.Users.SingleOrDefault(x => x.UserName == txtUsername.Text && x.Password == txtPassword.Text);
+                    var userStore = new UserStore<User>(ctx);
+                    var userManager = new UserManager<User>(userStore);
+
+                    var user = userManager.Find(txtUsername.Text, txtPassword.Text);
                     if (user == null)
                     {
                         txtUsername.Text = string.Empty;
                         txtPassword.Text = string.Empty;
+
                         throw new ApplicationException("Invalid Login Details! Try Again");
                     }
                 }
@@ -161,7 +168,7 @@ namespace OtadForum
                 {
                     var forums = ctx.Forums.ToList();
 
-                    foreach (var forum in forums) 
+                    foreach (var forum in forums)
                     {
                         drpForumName.Items.Add(forum.Name);
                     }

@@ -21,19 +21,12 @@ namespace OtadForum
         void Application_Start(object sender, EventArgs e)
         {
             // Code that runs on application startup
-            if (!_context.Database.CanConnect())
-            {
-                throw new ApplicationException("The forum can't connect to database.");
-            }
-
-            //_context.Database.EnsureDeleted();
-            _context.Database.EnsureCreated();
+            _context.Database.CreateIfNotExists();
         }
 
         void Application_End(object sender, EventArgs e)
         {
             //  Code that runs on application shutdown
-            _context?.Dispose();
         }
 
         void Application_Error(object sender, EventArgs e)
@@ -52,6 +45,13 @@ namespace OtadForum
             // Note: The Session_End event is raised only when the sessionstate mode
             // is set to InProc in the Web.config file. If session mode is set to StateServer 
             // or SQLServer, the event is not raised.
+        }
+
+        public override void Dispose()
+        {
+            base.Dispose();
+
+            _context?.Dispose();
         }
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Entities
 {
-    public class Forum
+    public sealed class Forum
     {
         public int Identifier { get; set; }
         public string Name { get; set; }

@@ -1,13 +1,14 @@
-﻿namespace drielnox.Forum.Business.Entities
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace drielnox.Forum.Business.Entities
 {
-    public sealed class User
+    public sealed class User : IdentityUser
     {
-        public int Identifier { get; set; }
-        public string UserName { get; set; }
+        [Column("FirstName"), MaxLength(50)]
         public string FirstName { get; set; }
+        [Column("LastName"), MaxLength(50)]
         public string LastName { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
-        public string Status { get; set; }
     }
 }

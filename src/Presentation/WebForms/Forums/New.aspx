@@ -7,7 +7,7 @@
         <strong>Error</strong> <asp:Literal ID="litError" runat="server"></asp:Literal>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </asp:Panel>
-    <asp:Panel ID="PanelLogin" runat="server" Height="199px">
+    <asp:Panel ID="PanelLogin" CssClass="card" runat="server">
         Confirm your login details to create a new forum<br />
         <div style="width: 572px; height: 173px;">
             <strong>Forum Admin Athentication:<br />
