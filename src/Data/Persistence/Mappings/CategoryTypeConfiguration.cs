@@ -1,4 +1,4 @@
-﻿using Entities;
+﻿using drielnox.Forum.Business.Entities;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.ModelConfiguration;
 

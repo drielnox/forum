@@ -69,11 +69,13 @@ namespace OtadForum
                     throw new ApplicationException("No comment to post");
                 }
 
+                var discussionId = int.Parse(txtTopicID.Text);
+
                 using (var ctx = new ForumContext())
                 {
                     var discussion = ctx.Forums
                         .SelectMany(x => x.Discussions)
-                        .Single(x => x.Identifier == int.Parse(txtTopicID.Text));
+                        .Single(x => x.Identifier == discussionId);
 
                     discussion.AddComment(txtComment.Text, txtName.Text, txtEmail.Text);
 
@@ -108,12 +110,14 @@ namespace OtadForum
         {
             try
             {
+                var discussionId = int.Parse(txtTopicID.Text);
+
                 using (var ctx = new ForumContext())
                 {
                     var discussion = ctx.Forums
                         .SelectMany(x => x.Discussions)
                         .Include(x => x.Forum)
-                        .Single(x => x.Identifier == int.Parse(txtTopicID.Text));
+                        .Single(x => x.Identifier == discussionId);
 
                     lblForum.Text = discussion.Forum.Name + " Forum";
                     lblTopic.Text = discussion.Subject;
@@ -137,11 +141,13 @@ namespace OtadForum
         // count and displays number of times the discussions have been opened(viewed)
         protected void Update_Views()
         {
+            var discussionId = int.Parse(txtTopicID.Text);
+
             using (var ctx = new ForumContext())
             {
                 var discussion = ctx.Forums
                     .SelectMany(x => x.Discussions)
-                    .Single(x => x.Identifier == int.Parse(txtTopicID.Text));
+                    .Single(x => x.Identifier == discussionId);
 
                 discussion.ViewCount++;
 
@@ -154,11 +160,13 @@ namespace OtadForum
         {
             try
             {
+                var discussionId = int.Parse(txtTopicID.Text);
+
                 using (var ctx = new ForumContext())
                 {
                     var comments = ctx.Forums
                         .SelectMany(x => x.Discussions)
-                        .Single(x => x.Identifier == int.Parse(txtTopicID.Text))
+                        .Single(x => x.Identifier == discussionId)
                         .Comments;
 
                     grdComments.DataSource = comments;

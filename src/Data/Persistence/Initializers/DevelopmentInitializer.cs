@@ -1,5 +1,4 @@
 ﻿using drielnox.Forum.Business.Entities;
-using Entities;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
@@ -8,7 +7,7 @@ using System.Data.Entity;
 
 namespace Persistence.Initializers
 {
-    internal class DevelopmentInitializer : DropCreateDatabaseIfModelChanges<ForumContext>
+    internal class DevelopmentInitializer : DropCreateDatabaseAlways<ForumContext>
     {
         private static readonly List<Category> _sampleCategoryData = new List<Category>()
         {

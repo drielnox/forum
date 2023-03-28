@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using drielnox.Forum.Presetation.WebForms.Account;
+using System;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace C3_Platform
 {
@@ -11,7 +8,10 @@ namespace C3_Platform
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!Page.User.Identity.IsAuthenticated && Page.GetType().BaseType != typeof(Login))
+            {
+                Response.Redirect("/Account/Login.aspx");
+            }
         }
     }
 }

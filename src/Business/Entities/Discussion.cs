@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Entities
+namespace drielnox.Forum.Business.Entities
 {
-    public sealed class Discussion
+    public sealed class Discussion : IAuditable
     {
         public int ForumId { get; set; }
         public Forum Forum { get; set; }
@@ -18,6 +15,8 @@ namespace Entities
         public int ViewCount { get; set; }
         public DateTime CreatedAt { get; set; }
         public string CreatedBy { get; set; }
+        public DateTime AmendedAt { get; set; }
+        public string AmendedBy { get; set; }
         public int CommentsCount => Comments.Count;
         public ISet<Comment> Comments { get; set; }
 

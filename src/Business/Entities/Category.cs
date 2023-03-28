@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Entities
+﻿namespace drielnox.Forum.Business.Entities
 {
     public sealed class Category
     {

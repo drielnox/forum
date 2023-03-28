@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Data.Entity.Core.Objects;
 using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Net.Mail;
 using Persistence;
-using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.AspNet.Identity;
-using drielnox.Forum.Business.Entities;
 
 namespace OtadForum
 {
@@ -16,6 +11,10 @@ namespace OtadForum
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            lblError.Visible = false;
+
+            Load_Forums_dropdown();
+            LoadCategories();
         }
 
         private void ShowError(string message)
@@ -24,58 +23,11 @@ namespace OtadForum
             lblError.Text = $"Error: {message}";
         }
 
-        //generating date-time logs for each routine click
-        protected void load_hidden_data_Click(object sender, EventArgs e)
-        {
-            txtTime.Text = DateTime.Now.ToString("HH:mm");
-            txtDate.Text = DateTime.Now.ToLongDateString();
-            txtDateTime.Text = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
-            txtPosted_by.Text = string.Empty;
-        }
-
-        // logging into database as an Admin to start new discussion
-        protected void btnLogin_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                using (var ctx = new ForumContext())
-                {
-                    var userStore = new UserStore<User>(ctx);
-                    var userManager = new UserManager<User>(userStore);
-
-                    var user = userManager.Find(txtUsername.Text, txtPassword.Text);
-                    if (user == null)
-                    {
-                        txtUsername.Text = string.Empty;
-                        txtPassword.Text = string.Empty;
-
-                        throw new ApplicationException("Invalid Login Details! Try Again");
-                    }
-                }
-
-                PanelDiscuss.Visible = true;
-                PanelLogin.Visible = false;
-                lblError.Visible = false;
-
-                txtPosted_by.Text = txtUsername.Text;
-
-                Load_Forums_dropdown();
-            }
-            catch (Exception err)
-            {
-                ShowError(err.Message);
-            }
-        }
-
         // post and start new discussion
         protected void lnkPost_Click(object sender, EventArgs e)
         {
             try
             {
-                txtTime.Text = DateTime.Now.ToString("HH:mm");
-                txtDate.Text = DateTime.Now.ToLongDateString();
-                txtDateTime.Text = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
-
                 if (string.IsNullOrWhiteSpace(txtDiscuss_Topic.Text))
                 {
                     throw new ApplicationException("Mandatory Field is empty: Discussion Topic");
@@ -88,10 +40,12 @@ namespace OtadForum
 
                 using (var ctx = new ForumContext())
                 {
-                    var forum = ctx.Forums.Single(x => x.Name == drpForumName.Text);
-                    var category = ctx.Categories.Single(x => x.Name == txtDiscuss_Category.Text);
+                    var forumId = int.Parse(drpForumName.SelectedItem.Value);
+                    var forum = ctx.Forums.Single(x => x.Identifier == forumId);
+                    var categoryId = int.Parse(ddlCategory.SelectedItem.Value);
+                    var category = ctx.Categories.Single(x => x.Identifier == categoryId);
 
-                    forum.AddDiscussion(category, txtDiscuss_Topic.Text, txtDiscussion.Text, txtPosted_by.Text);
+                    forum.AddDiscussion(category, txtDiscuss_Topic.Text, txtDiscussion.Text);
 
                     ctx.SaveChanges();
                 }
@@ -99,15 +53,12 @@ namespace OtadForum
                 PanelReport.Visible = true;
                 Label1.Text = "You have successfully started a new discussion";
 
-                Send_Mail();
                 PanelDiscuss.Visible = false;
 
-                drpForumName.Text = string.Empty;
+                drpForumName.ClearSelection();
                 txtDiscuss_Topic.Text = string.Empty;
+                ddlCategory.ClearSelection();
                 txtDiscussion.Text = string.Empty;
-                txtDiscuss_Category.Text = string.Empty;
-                txtDate.Text = string.Empty;
-                txtTime.Text = string.Empty;
 
                 HideError();
             }
@@ -130,25 +81,23 @@ namespace OtadForum
             HideError();
         }
 
-        // send notification mail to admin about new discussion started
-        protected void Send_Mail()
+        // load list of available forums
+        private void Load_Forums_dropdown()
         {
+            drpForumName.Items.Clear();
+
             try
             {
-                txtBody.Text = " Dear Forum Admin, " + "\r\n" + "\r\n" + "A new discussion has just been started on your forum's portal. Please see details below: " + "\r\n" + "\r\n" + "Date.Time Started: " + txtDateTime.Text + "\r\n" + "Started by: " + txtPosted_by.Text + "\r\n" + "Forum Name: " + drpForumName.Text + "\r\n" + "Forum Topic: " + txtDiscuss_Topic.Text + "\r\n" + "Forum Category: " + txtDiscuss_Category.Text + "\r\n" + "Discussion: " + "\r\n" + txtDiscussion.Text + "\r\n" + "\r\n" + "Thank you. " + "\r\n" + "Forum e-Notification System";
+                using (var ctx = new ForumContext())
+                {
+                    var forums = ctx.Forums.ToList();
 
-                MailMessage m = new MailMessage();
-                m.From = new MailAddress("mtadese.scripts@gmail.com", "Forums e-Notification");
-                m.To.Add(new MailAddress("mtadese.scripts@gmail.com", "Forums Mail"));
-                m.Subject = "New Discussion started on " + drpForumName.Text + " Forum";
-                m.Body = txtBody.Text;
-
-                SmtpClient sc = new SmtpClient();
-                sc.Host = "smtp.gmail.com";
-                sc.Port = 587;
-                sc.Credentials = new System.Net.NetworkCredential("mtadese.scripts@gmail.com", "ta**");
-                sc.EnableSsl = true;
-                sc.Send(m);
+                    foreach (var forum in forums)
+                    {
+                        var item = new ListItem(forum.Name, forum.Identifier.ToString());
+                        drpForumName.Items.Add(item);
+                    }
+                }
             }
             catch (Exception err)
             {
@@ -156,27 +105,26 @@ namespace OtadForum
             }
         }
 
-        // load list of available forums
-        protected void Load_Forums_dropdown()
+        private void LoadCategories()
         {
+            ddlCategory.Items.Clear();
+
             try
             {
-                drpForumName.Items.Clear();
-                drpForumName.Items.Add("");
-
                 using (var ctx = new ForumContext())
                 {
-                    var forums = ctx.Forums.ToList();
+                    var categories = ctx.Categories.ToList();
 
-                    foreach (var forum in forums)
+                    foreach (var category in categories)
                     {
-                        drpForumName.Items.Add(forum.Name);
+                        var item = new ListItem(category.Name, category.Identifier.ToString());
+                        ddlCategory.Items.Add(item);
                     }
                 }
             }
-            catch (Exception err)
+            catch (Exception ex)
             {
-                ShowError(err.Message);
+                ShowError(ex.Message);
             }
         }
     }

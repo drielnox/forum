@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Entities
+namespace drielnox.Forum.Business.Entities
 {
-    public sealed class Forum
+    public sealed class Forum : IAuditable
     {
         public int Identifier { get; set; }
         public string Name { get; set; }
@@ -20,7 +20,7 @@ namespace Entities
             Discussions = new HashSet<Discussion>();
         }
 
-        public void AddDiscussion(Category category, string subject, string content, string postedBy)
+        public void AddDiscussion(Category category, string subject, string content)
         {
             var discussion = new Discussion()
             {
@@ -30,8 +30,6 @@ namespace Entities
                 Content = content,
                 Category = category,
                 CategoryId = category.Identifier,
-                CreatedAt = DateTime.UtcNow,
-                CreatedBy = postedBy,
                 ViewCount = 0
             };
 
