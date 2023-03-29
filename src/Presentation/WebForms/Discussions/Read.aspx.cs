@@ -1,10 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
+using drielnox.Forum.Business.Entities;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Persistence;
 
 namespace OtadForum
@@ -33,15 +33,7 @@ namespace OtadForum
         // save topic-id of selected discussion to be referenced from other modules
         protected void show_text_values()
         {
-            txtTopicID.Text = (string)Session["Value"];
-        }
-
-        //generating date-time logs for each routine on this module
-        protected void load_hidden_data_Click(object sender, EventArgs e)
-        {
-            txtTime.Text = DateTime.Now.ToString("HH:mm");
-            txtDate.Text = DateTime.Now.ToLongDateString();
-            txtDateTime.Text = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
+            hidTopicId.Value = (string)Session["Value"];
         }
 
         // display the comment module. required to post comments
@@ -55,39 +47,30 @@ namespace OtadForum
         {
             try
             {
-                txtTime.Text = DateTime.Now.ToString("HH:mm");
-                txtDate.Text = DateTime.Now.ToLongDateString();
-                txtDateTime.Text = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
-
-                if (string.IsNullOrWhiteSpace(txtName.Text))
-                {
-                    throw new ApplicationException("Please enter your name");
-                }
-
                 if (string.IsNullOrWhiteSpace(txtComment.Text))
                 {
                     throw new ApplicationException("No comment to post");
                 }
 
-                var discussionId = int.Parse(txtTopicID.Text);
+                var discussionId = int.Parse(hidTopicId.Value);
 
                 using (var ctx = new ForumContext())
                 {
+                    var userStore = new UserStore<User>(ctx);
+                    var userManager = new UserManager<User>(userStore);
+
+                    var user =  userManager.FindByName(User.Identity.Name);
+
                     var discussion = ctx.Forums
                         .SelectMany(x => x.Discussions)
                         .Single(x => x.Identifier == discussionId);
 
-                    discussion.AddComment(txtComment.Text, txtName.Text, txtEmail.Text);
+                    discussion.AddComment(txtComment.Text, user.UserName, user.Email);
 
                     ctx.SaveChanges();
                 }
 
                 txtComment.Text = string.Empty;
-                txtName.Text = string.Empty;
-                txtEmail.Text = string.Empty;
-                txtDate.Text = string.Empty;
-                txtTime.Text = string.Empty;
-                txtDateTime.Text = string.Empty;
 
                 PanelComment.Visible = false;
                 HideError();
@@ -110,7 +93,7 @@ namespace OtadForum
         {
             try
             {
-                var discussionId = int.Parse(txtTopicID.Text);
+                var discussionId = int.Parse(hidTopicId.Value);
 
                 using (var ctx = new ForumContext())
                 {
@@ -119,14 +102,12 @@ namespace OtadForum
                         .Include(x => x.Forum)
                         .Single(x => x.Identifier == discussionId);
 
-                    lblForum.Text = discussion.Forum.Name + " Forum";
-                    lblTopic.Text = discussion.Subject;
-                    lblDiscussion.Text = discussion.Content;
-                    lblDate.Text = discussion.CreatedAt.ToShortDateString();
-                    lblTime.Text = discussion.CreatedAt.ToShortTimeString();
-                    lblBy.Text = discussion.CreatedBy;
-                    txtCommentNo.Text = discussion.CommentsCount.ToString();
-                    txtViewNo.Text = discussion.ViewCount.ToString();
+                    litForum.Text = discussion.Forum.Name + " Forum";
+                    litTopic.Text = discussion.Subject;
+                    litDiscussion.Text = discussion.Content;
+                    litBy.Text = discussion.CreatedBy;
+                    litAt.Text = discussion.CreatedAt.ToString();
+                    litViewCount.Text = discussion.ViewCount.ToString();
                 }
 
                 Load_Comments();
@@ -141,7 +122,7 @@ namespace OtadForum
         // count and displays number of times the discussions have been opened(viewed)
         protected void Update_Views()
         {
-            var discussionId = int.Parse(txtTopicID.Text);
+            var discussionId = int.Parse(hidTopicId.Value);
 
             using (var ctx = new ForumContext())
             {
@@ -160,12 +141,13 @@ namespace OtadForum
         {
             try
             {
-                var discussionId = int.Parse(txtTopicID.Text);
+                var discussionId = int.Parse(hidTopicId.Value);
 
                 using (var ctx = new ForumContext())
                 {
                     var comments = ctx.Forums
                         .SelectMany(x => x.Discussions)
+                        .Include(x => x.Comments)
                         .Single(x => x.Identifier == discussionId)
                         .Comments;
 
@@ -179,12 +161,6 @@ namespace OtadForum
             {
                 ShowError(err.Message);
             }
-        }
-
-        // testing 'number of discussion views' syntax
-        protected void Button1_Click(object sender, EventArgs e)
-        {
-            Update_Views();
         }
     }
 }

@@ -38,11 +38,12 @@ namespace OtadForum
                     throw new ApplicationException("Mandatory Field is empty: Discussion details");
                 }
 
+                var forumId = int.Parse(drpForumName.SelectedItem.Value);
+                var categoryId = int.Parse(ddlCategory.SelectedItem.Value);
+
                 using (var ctx = new ForumContext())
                 {
-                    var forumId = int.Parse(drpForumName.SelectedItem.Value);
                     var forum = ctx.Forums.Single(x => x.Identifier == forumId);
-                    var categoryId = int.Parse(ddlCategory.SelectedItem.Value);
                     var category = ctx.Categories.Single(x => x.Identifier == categoryId);
 
                     forum.AddDiscussion(category, txtDiscuss_Topic.Text, txtDiscussion.Text);

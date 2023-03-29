@@ -3,38 +3,25 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+    <asp:HiddenField ID="hidTopicId" runat="server" />
     <p align="center">
         <asp:Label ID="lblError" runat="server" BackColor="Red" Font-Bold="True" Font-Names="Arial" Font-Size="Large" ForeColor="White" Text="E" Visible="False"></asp:Label>
     </p>
-    <br />
-    <h1>Forum Discussions</h1>
-    <br />
-    <br />
-    <div style="height: 34px; background-color: #666666; color: #003399; vertical-align: middle;">
-        <asp:Label ID="lblForum" runat="server" Font-Bold="True" Font-Size="Large" ForeColor="White"></asp:Label>
-        <br />
-        <br />
-        <br />
-    </div>
-    <br />
-    <div style="height: 24px; background-color: #99CCFF; color: #003399;">
-        d:
-        <asp:Label ID="lblDate" runat="server" Font-Bold="True" ForeColor="Black"></asp:Label>
-        &nbsp;&nbsp; t:
-        <asp:Label ID="lblTime" runat="server" Font-Bold="True" ForeColor="Black"></asp:Label>
-        &nbsp; by:&nbsp;
-        <asp:Label ID="lblBy" runat="server" Font-Bold="True" ForeColor="Black"></asp:Label>
-        <br />
-        <br />
-        <br />
-    </div>
-    <div style="height: 26px">
-        <asp:Label ID="lblTopic" runat="server" Font-Bold="True" Font-Size="Medium" ForeColor="Black"></asp:Label>
-    </div>
-    <br />
-    <br />
-    <div>
-        <asp:Label ID="lblDiscussion" runat="server" Font-Names="Arial" Font-Size="Medium" ForeColor="Black" Height="24px" Width="700px"></asp:Label>
+    <h1>
+        <asp:Literal ID="litForum" runat="server"></asp:Literal>
+    </h1>
+    <div class="card">
+        <div class="card-header">
+            <asp:Literal ID="litTopic" runat="server"></asp:Literal>
+        </div>
+        <div class="card-body">
+            <p class="card-text">
+                <asp:Literal ID="litDiscussion" runat="server"></asp:Literal>
+            </p>
+        </div>
+        <div class="card-footer text-body-secondary text-end">
+            by:&nbsp;<asp:Literal ID="litBy" runat="server"></asp:Literal>&nbsp;at&nbsp;<asp:Literal ID="litAt" runat="server"></asp:Literal>. views:&nbsp;<asp:Literal ID="litViewCount" runat="server"></asp:Literal>
+        </div>
     </div>
     <hr />
     <asp:GridView ID="grdComments" CssClass="table" runat="server" AutoGenerateColumns="False" EnableSortingAndPagingCallbacks="True" PageSize="5">
@@ -46,60 +33,14 @@
         </Columns>
     </asp:GridView>
     <hr />
-    <asp:LinkButton ID="lnkComment" runat="server" OnClick="lnkComment_Click">Comment</asp:LinkButton>
+    <asp:LinkButton ID="lnkComment" CssClass="btn btn-primary" OnClick="lnkComment_Click" runat="server">Comment</asp:LinkButton>
     <hr />
-    <asp:Panel ID="PanelComment" runat="server" Height="420px" Visible="False">
-        <strong>Post a comment:</strong><br />
-        <br />
-        <div style="height: 358px">
-            <br />
-            Name:<br />
-            <asp:TextBox ID="txtName" runat="server" CssClass="textEntry" Width="473px"></asp:TextBox>
-            <br />
-            <br />
-            Email:<br />
-            <asp:TextBox ID="txtEmail" runat="server" CssClass="textEntry" Width="473px"></asp:TextBox>
-            <br />
-            <br />
-            <br />
-            <asp:TextBox ID="txtComment" runat="server" CssClass="textEntry" Height="169px" TextMode="MultiLine" Width="473px"></asp:TextBox>
-            <br />
-            <br />
-            <asp:LinkButton ID="lnkPost" runat="server" BorderStyle="Solid" Font-Bold="True" Font-Underline="False" Height="16px" OnClick="lnkPost_Click" Width="35px">Post</asp:LinkButton>
-            <br />
-            <br />
-            <br />
+    <asp:Panel ID="PanelComment" runat="server" Visible="False">
+        <h3>Post a comment:</h3>
+        <div class="mb-3">
+            <asp:Label ID="lblComment" CssClass="form-label" AssociatedControlID="txtComment" runat="server">Comment:</asp:Label>
+            <asp:TextBox ID="txtComment" CssClass="form-control" TextMode="MultiLine" runat="server"></asp:TextBox>
         </div>
+        <asp:LinkButton ID="lnkPost" CssClass="btn btn-primary" OnClick="lnkPost_Click" runat="server">Post</asp:LinkButton>
     </asp:Panel>
-    <br />
-    <br />
-    <br />
-    <asp:Panel ID="Panel3" runat="server" Height="100px" Visible="False">
-        Hidden fields:<br />
-        <asp:TextBox ID="txtTime" runat="server"></asp:TextBox>
-        &nbsp;
-        <asp:TextBox ID="txtDay" runat="server"></asp:TextBox>
-        &nbsp;&nbsp;<asp:TextBox ID="txtDate" runat="server"></asp:TextBox>
-        &nbsp;&nbsp;<asp:TextBox ID="txtDateTime" runat="server"></asp:TextBox>
-        &nbsp;&nbsp;
-        <asp:TextBox ID="txtPosted_by" runat="server"></asp:TextBox>
-        &nbsp;
-        <asp:TextBox ID="txtTopicID" runat="server"></asp:TextBox>
-        <br />
-        <asp:TextBox ID="txtCommentNo" runat="server"></asp:TextBox>
-        &nbsp;
-        <asp:TextBox ID="txtCommentNoNew" runat="server"></asp:TextBox>
-        &nbsp;
-        <asp:TextBox ID="txtViewNo" runat="server"></asp:TextBox>
-        &nbsp;
-        <asp:TextBox ID="txtViewNoNew" runat="server"></asp:TextBox>
-        <br />
-        &nbsp;<asp:Button ID="load_hidden_data" runat="server"
-            OnClick="load_hidden_data_Click" Style="height: 26px; width: 56px"
-            Text="Button" />
-        &nbsp;
-        <asp:Button ID="Button1" runat="server" OnClick="Button1_Click"
-            Text="Update Views" />
-    </asp:Panel>
-    <br />
 </asp:Content>
