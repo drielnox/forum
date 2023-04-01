@@ -12,42 +12,12 @@ namespace OtadForum
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            txtUsername.Focus();
+            if (!User.Identity.IsAuthenticated)
+            {
+                Response.Redirect("/Account/Login.aspx");
+            }
+
             Load_Forums();
-        }
-
-        // logging into database as an Admin to manage available forums
-        protected void btnLogin_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                using (var ctx = new ForumContext())
-                {
-                    var userStore = new UserStore<User>(ctx);
-                    var userManager = new UserManager<User>(userStore);
-
-                    var user = userManager.Find(txtUsername.Text, txtPassword.Text);
-                    if (user != null) 
-                    {
-                        PanelForums.Visible = true;
-                        PanelLogin.Visible = false;
-                        lblError.Visible = false;
-
-                        txtPosted_by.Text = txtUsername.Text;
-                    }
-                    else
-                    {
-                        txtUsername.Text = string.Empty;
-                        txtPassword.Text = string.Empty;
-
-                        throw new ApplicationException("Invalid Login Details! Try Again");
-                    }
-                }
-            }
-            catch (Exception err)
-            {
-                ShowError(err.Message);
-            }
         }
 
         // display available forums on a gridbox control
@@ -157,8 +127,6 @@ namespace OtadForum
                     forum.Name = txtForumName.Text;
                     forum.Administrator = txtForumAdmin.Text;
                     forum.Email = txtForumEmail.Text;
-                    forum.AmendedAt = DateTime.UtcNow;
-                    forum.AmendedBy = txtUsername.Text;
 
                     ctx.SaveChanges();
                 }

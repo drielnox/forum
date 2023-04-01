@@ -4,11 +4,8 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using Persistence;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace drielnox.Forum.Presetation.WebForms.Account
 {
@@ -22,7 +19,6 @@ namespace drielnox.Forum.Presetation.WebForms.Account
                 {
                     litStatusText.Text = string.Format("Hello {0}!!", User.Identity.GetUserName());
                     phLoginStatus.Visible = true;
-                    phLogoutButton.Visible = true;
                 }
                 else
                 {
@@ -53,13 +49,6 @@ namespace drielnox.Forum.Presetation.WebForms.Account
                     phLoginStatus.Visible = true;
                 }
             }
-        }
-
-        protected void SignOut(object sender, EventArgs e)
-        {
-            var authenticationManager = HttpContext.Current.GetOwinContext().Authentication;
-            authenticationManager.SignOut();
-            Response.Redirect("/Account/Login.aspx");
         }
     }
 }

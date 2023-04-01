@@ -11,6 +11,11 @@ namespace OtadForum
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!User.Identity.IsAuthenticated)
+            {
+                Response.Redirect("/Account/Login.aspx");
+            }
+
             lblError.Visible = false;
 
             Load_Forums_dropdown();

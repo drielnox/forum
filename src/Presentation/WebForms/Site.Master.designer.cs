@@ -7,83 +7,74 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace drielnox.Forum.Presetation.WebForms.Account
+namespace drielnox.Forum.Presetation.WebForms
 {
 
 
-    public partial class Login
+    public partial class SiteMaster
     {
 
         /// <summary>
-        /// Control phLoginStatus.
+        /// Control HeadContent.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder phLoginStatus;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder HeadContent;
 
         /// <summary>
-        /// Control litStatusText.
+        /// Control pnlUserLoggin.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litStatusText;
+        protected global::System.Web.UI.WebControls.Panel pnlUserLoggin;
 
         /// <summary>
-        /// Control phLoginForm.
+        /// Control lnkLogin.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder phLoginForm;
+        protected global::System.Web.UI.WebControls.HyperLink lnkLogin;
 
         /// <summary>
-        /// Control lblUsername.
+        /// Control lnkSignUp.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblUsername;
+        protected global::System.Web.UI.WebControls.HyperLink lnkSignUp;
 
         /// <summary>
-        /// Control txtUserName.
+        /// Control pnlUserLogged.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtUserName;
+        protected global::System.Web.UI.WebControls.Panel pnlUserLogged;
 
         /// <summary>
-        /// Control lblPassword.
+        /// Control lnkSignOut.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPassword;
+        protected global::System.Web.UI.WebControls.HyperLink lnkSignOut;
 
         /// <summary>
-        /// Control txtPassword.
+        /// Control MainContent.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPassword;
-
-        /// <summary>
-        /// Control btnSubmit.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSubmit;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder MainContent;
     }
 }

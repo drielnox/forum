@@ -2,15 +2,21 @@
 using System;
 using System.Web.UI;
 
-namespace C3_Platform
+namespace drielnox.Forum.Presetation.WebForms
 {
     public partial class SiteMaster : MasterPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Page.User.Identity.IsAuthenticated && Page.GetType().BaseType != typeof(Login))
+            if (Page.User.Identity.IsAuthenticated)
             {
-                Response.Redirect("/Account/Login.aspx");
+                pnlUserLogged.Visible = true;
+                pnlUserLoggin.Visible = false;
+            }
+            else
+            {
+                pnlUserLogged.Visible = false;
+                pnlUserLoggin.Visible = true;
             }
         }
     }

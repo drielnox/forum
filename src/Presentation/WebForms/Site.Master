@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.Master.cs" Inherits="C3_Platform.SiteMaster" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.Master.cs" Inherits="drielnox.Forum.Presetation.WebForms.SiteMaster" Strict="True" Debug="True" EnableTheming="False" Explicit="True" %>
 
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="dark">
@@ -48,6 +48,26 @@
                             </ul>
                         </li>
                     </ul>
+                    <asp:Panel ID="pnlUserLoggin" CssClass="navbar-text" Visible="true" runat="server">
+                        <asp:HyperLink ID="lnkLogin" CssClass="btn btn-secondary me-2" NavigateUrl="~/Account/Login.aspx" runat="server">Login</asp:HyperLink>
+                        <asp:HyperLink ID="lnkSignUp" CssClass="btn btn-primary" NavigateUrl="~/Account/Register.aspx" runat="server">Sign-Up</asp:HyperLink>
+                    </asp:Panel>
+                    <asp:Panel ID="pnlUserLogged" CssClass="dropdown text-end" Visible="false" runat="server">
+                        <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
+                        </a>
+                        <ul class="dropdown-menu text-small">
+                            <li><a class="dropdown-item" href="#">New project...</a></li>
+                            <li><a class="dropdown-item" href="#">Settings</a></li>
+                            <li><a class="dropdown-item" href="#">Profile</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li>
+                                <asp:HyperLink ID="lnkSignOut" CssClass="dropdown" NavigateUrl="~/Account/SignOut.aspx" runat="server">Sign out</asp:HyperLink>
+                            </li>
+                        </ul>
+                    </asp:Panel>
                 </div>
             </div>
         </nav>

@@ -13,6 +13,11 @@ namespace OtadForum
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!User.Identity.IsAuthenticated)
+            {
+                Response.Redirect("/Account/Login.aspx");
+            }
+
             var admins = new List<User>();
 
             if (!IsPostBack)

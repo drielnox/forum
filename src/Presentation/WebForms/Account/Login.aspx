@@ -25,8 +25,5 @@
                 <asp:Button ID="btnSubmit" CssClass="btn btn-primary" Text="Log in" OnClick="SignIn" runat="server" />
             </div>
         </asp:PlaceHolder>
-        <asp:PlaceHolder ID="phLogoutButton" Visible="false" runat="server">
-            <asp:Button runat="server" OnClick="SignOut" Text="Log out" />
-        </asp:PlaceHolder>
     </div>
 </asp:Content>
