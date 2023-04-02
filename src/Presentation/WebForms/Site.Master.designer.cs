@@ -24,6 +24,24 @@ namespace drielnox.Forum.Presetation.WebForms
         protected global::System.Web.UI.WebControls.ContentPlaceHolder HeadContent;
 
         /// <summary>
+        /// Control phNewForum.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder phNewForum;
+
+        /// <summary>
+        /// Control phManageForum.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder phManageForum;
+
+        /// <summary>
         /// Control pnlUserLoggin.
         /// </summary>
         /// <remarks>
@@ -58,6 +76,15 @@ namespace drielnox.Forum.Presetation.WebForms
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlUserLogged;
+
+        /// <summary>
+        /// Control phUserProfile.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder phUserProfile;
 
         /// <summary>
         /// Control lnkSignOut.

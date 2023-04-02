@@ -2,9 +2,6 @@
 using System.Linq;
 using System.Web.UI;
 using Persistence;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
-using drielnox.Forum.Business.Entities;
 
 namespace OtadForum
 {
@@ -34,7 +31,7 @@ namespace OtadForum
         {
             try
             {
-                txtForumID.Text = grdForums.SelectedRow.Cells[0].Text;
+                hidForumId.Value = grdForums.SelectedRow.Cells[0].Text;
             }
             catch (Exception err)
             {
@@ -47,9 +44,11 @@ namespace OtadForum
         {
             try
             {
+                var forumId = int.Parse(hidForumId.Value);
+
                 using (var ctx = new ForumContext())
                 {
-                    var forum = ctx.Forums.SingleOrDefault(x => x.Identifier == int.Parse(txtForumID.Text));
+                    var forum = ctx.Forums.SingleOrDefault(x => x.Identifier == forumId);
                     if (forum != null)
                     {
                         txtForumName.Text = forum.Name;
@@ -102,10 +101,6 @@ namespace OtadForum
 
             try
             {
-                txtTime.Text = DateTime.Now.ToString("HH:mm");
-                txtDate.Text = DateTime.Now.ToLongDateString();
-                txtDateTime.Text = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
-
                 if (string.IsNullOrWhiteSpace(txtForumName.Text))
                 {
                     throw new ApplicationException("Please enter Forum Name");
@@ -121,9 +116,11 @@ namespace OtadForum
                     throw new ApplicationException("Empty field: Forum's Email Address");
                 }
 
+                var forumId = int.Parse(hidForumId.Value);
+
                 using (var ctx = new ForumContext())
                 {
-                    var forum = ctx.Forums.Single(x => x.Identifier == int.Parse(txtForumID.Text));
+                    var forum = ctx.Forums.Single(x => x.Identifier == forumId);
                     forum.Name = txtForumName.Text;
                     forum.Administrator = txtForumAdmin.Text;
                     forum.Email = txtForumEmail.Text;

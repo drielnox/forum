@@ -1,5 +1,4 @@
-﻿using drielnox.Forum.Presetation.WebForms.Account;
-using System;
+﻿using System;
 using System.Web.UI;
 
 namespace drielnox.Forum.Presetation.WebForms
@@ -12,11 +11,24 @@ namespace drielnox.Forum.Presetation.WebForms
             {
                 pnlUserLogged.Visible = true;
                 pnlUserLoggin.Visible = false;
+                phUserProfile.Visible = true;
+
+                if (Page.User.IsInRole("Administrator"))
+                {
+                    phManageForum.Visible = true;
+                    phNewForum.Visible = true;
+                }
+                else
+                {
+                    phManageForum.Visible = false;
+                    phNewForum.Visible = false;
+                }
             }
             else
             {
                 pnlUserLogged.Visible = false;
                 pnlUserLoggin.Visible = true;
+                phUserProfile.Visible = false;
             }
         }
     }

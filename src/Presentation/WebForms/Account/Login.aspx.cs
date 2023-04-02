@@ -17,8 +17,7 @@ namespace drielnox.Forum.Presetation.WebForms.Account
             {
                 if (User.Identity.IsAuthenticated)
                 {
-                    litStatusText.Text = string.Format("Hello {0}!!", User.Identity.GetUserName());
-                    phLoginStatus.Visible = true;
+                    Response.Redirect("/Account/Profile.aspx");
                 }
                 else
                 {

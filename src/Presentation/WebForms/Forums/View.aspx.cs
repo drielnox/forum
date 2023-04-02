@@ -94,11 +94,10 @@ namespace OtadForum
                 {
                     var forum = ctx.Forums
                         .Single(x => x.Name == txtForumName.Text);
-                    lblForum.Text = $"{forum.Name} Forum";
-                    lblAdmin.Text = forum.Administrator;
-                    lblEmail.Text = forum.Email;
-                    lblDate.Text = forum.CreatedAt.ToShortDateString();
-                    lblTime.Text = forum.CreatedAt.ToShortTimeString();
+                    litForumName.Text = $"{forum.Name} Forum";
+                    litAdmin.Text = forum.Administrator;
+                    litEmail.Text = forum.Email;
+                    litCreatedAt.Text = forum.CreatedAt.ToString();
                 }
             }
             catch (Exception err)

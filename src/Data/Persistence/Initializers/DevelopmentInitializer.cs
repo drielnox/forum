@@ -38,6 +38,18 @@ namespace Persistence.Initializers
             }
         };
 
+        private static readonly List<IdentityRole> _sampleRoleData = new List<IdentityRole>()
+        {
+            new IdentityRole()
+            {
+                Name = "Administrator"
+            },
+            new IdentityRole()
+            {
+                Name = "User"
+            }
+        };
+
         private static readonly List<User> _sampleUserData = new List<User>()
         {
             new User()
@@ -45,7 +57,7 @@ namespace Persistence.Initializers
                 FirstName = "Micheal",
                 LastName = "Tadese",
                 Email = "mtadese@gmail.com",
-                UserName = "mtadese"
+                UserName = "mtadese",
             },
             new User()
             {
@@ -181,15 +193,9 @@ namespace Persistence.Initializers
 
             context.Categories.AddRange(_sampleCategoryData);
 
-            var userStore = new UserStore<User>(context);
-            var userManager = new UserManager<User>(userStore);
-
-            foreach (var sampleUser in _sampleUserData)
-            {
-                userManager.Create(sampleUser, "asdqwe123");
-            }
-
-            context.SaveChanges();
+            CreateRoles(context);
+            CreateUsers(context);
+            AssignRoles(context);
 
             _sampleDiscussionData[0].Category = _sampleCategoryData[0];
             _sampleDiscussionData[1].Category = _sampleCategoryData[1];
@@ -206,6 +212,44 @@ namespace Persistence.Initializers
             _sampleForumData[1].Discussions.Add(_sampleDiscussionData[2]);
 
             context.Forums.AddRange(_sampleForumData);
+
+            context.SaveChanges();
+        }
+
+        private static void AssignRoles(ForumContext context)
+        {
+            var userStore = new UserStore<User>(context);
+            var userManager = new UserManager<User>(userStore);
+
+            userManager.AddToRole(_sampleUserData[0].Id, "Administrator");
+            userManager.AddToRole(_sampleUserData[1].Id, "Administrator");
+            userManager.AddToRole(_sampleUserData[2].Id, "User");
+
+            context.SaveChanges();
+        }
+
+        private static void CreateUsers(ForumContext context)
+        {
+            var userStore = new UserStore<User>(context);
+            var userManager = new UserManager<User>(userStore);
+
+            foreach (var sampleUser in _sampleUserData)
+            {
+                userManager.Create(sampleUser, "asdqwe123");
+            }
+
+            context.SaveChanges();
+        }
+
+        private static void CreateRoles(ForumContext context)
+        {
+            var roleStore = new RoleStore<IdentityRole>(context);
+            var roleManager = new RoleManager<IdentityRole>(roleStore);
+
+            foreach (var sampleRole in _sampleRoleData)
+            {
+                roleManager.Create(sampleRole);
+            }
 
             context.SaveChanges();
         }

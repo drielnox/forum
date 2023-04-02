@@ -13,7 +13,7 @@
     <form class="container" runat="server">
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">Forum</a>
+                <asp:HyperLink CssClass="navbar-brand" NavigateUrl="~/Default.aspx" runat="server">Forum</asp:HyperLink>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -28,12 +28,16 @@
                                 <li>
                                     <asp:HyperLink CssClass="dropdown-item" NavigateUrl="~/Forums/View.aspx" runat="server">View</asp:HyperLink>
                                 </li>
-                                <li>
-                                    <asp:HyperLink CssClass="dropdown-item" NavigateUrl="~/Forums/New.aspx" runat="server">New</asp:HyperLink>
-                                </li>
-                                <li>
-                                    <asp:HyperLink CssClass="dropdown-item" NavigateUrl="~/Forums/Manage.aspx" runat="server">Manage</asp:HyperLink>
-                                </li>
+                                <asp:PlaceHolder ID="phNewForum" Visible="false" runat="server">
+                                    <li>
+                                        <asp:HyperLink CssClass="dropdown-item" NavigateUrl="~/Forums/New.aspx" runat="server">New</asp:HyperLink>
+                                    </li>
+                                </asp:PlaceHolder>
+                                <asp:PlaceHolder ID="phManageForum" Visible="false" runat="server">
+                                    <li>
+                                        <asp:HyperLink CssClass="dropdown-item" NavigateUrl="~/Forums/Manage.aspx" runat="server">Manage</asp:HyperLink>
+                                    </li>
+                                </asp:PlaceHolder>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -57,14 +61,17 @@
                             <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
                         </a>
                         <ul class="dropdown-menu text-small">
-                            <li><a class="dropdown-item" href="#">New project...</a></li>
                             <li><a class="dropdown-item" href="#">Settings</a></li>
-                            <li><a class="dropdown-item" href="#">Profile</a></li>
+                            <asp:PlaceHolder ID="phUserProfile" runat="server">
+                                <li>
+                                    <asp:HyperLink CssClass="dropdown-item" NavigateUrl="~/Account/Profile.aspx" runat="server">Profile</asp:HyperLink>
+                                </li>
+                            </asp:PlaceHolder>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
                             <li>
-                                <asp:HyperLink ID="lnkSignOut" CssClass="dropdown" NavigateUrl="~/Account/SignOut.aspx" runat="server">Sign out</asp:HyperLink>
+                                <asp:HyperLink ID="lnkSignOut" CssClass="dropdown-item" NavigateUrl="~/Account/SignOut.aspx" runat="server">Sign out</asp:HyperLink>
                             </li>
                         </ul>
                     </asp:Panel>

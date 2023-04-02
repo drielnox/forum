@@ -7,29 +7,20 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace drielnox.Forum.Presetation.WebForms
+namespace drielnox.Forum.Presetation.WebForms.Account
 {
 
 
-    public partial class Default
+    public partial class Profile
     {
 
         /// <summary>
-        /// Control rLastFiveDiscussions.
+        /// Control litUserName.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rLastFiveDiscussions;
-
-        /// <summary>
-        /// Control rLastFiveComments.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rLastFiveComments;
+        protected global::System.Web.UI.WebControls.Literal litUserName;
     }
 }

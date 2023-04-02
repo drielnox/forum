@@ -1,17 +1,64 @@
-﻿using System;
+﻿using Persistence;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace OtadForum
+namespace drielnox.Forum.Presetation.WebForms
 {
-    public partial class _Default : Page
+    public partial class Default : Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            LoadLastFiveDiscussions();
+            LoadLastFiveComments();
+        }
 
+        private void LoadLastFiveComments()
+        {
+            try
+            {
+                using (var ctx = new ForumContext())
+                {
+                    var lastFiveComments = ctx.Forums
+                        .SelectMany(x => x.Discussions)
+                        .SelectMany(x => x.Comments)
+                        .OrderByDescending(x => x.CreatedAt)
+                        .Take(5)
+                        .ToList();
+
+                    rLastFiveComments.DataSource = lastFiveComments;
+                    rLastFiveComments.DataBind();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        private void LoadLastFiveDiscussions()
+        {
+            try
+            {
+                using (var ctx = new ForumContext())
+                {
+                    var lastFiveDiscussions = ctx.Forums
+                        .SelectMany(x => x.Discussions)
+                        .OrderByDescending(x => x.CreatedAt)
+                        .Take(5)
+                        .ToList();
+
+                    rLastFiveDiscussions.DataSource = lastFiveDiscussions;
+                    rLastFiveDiscussions.DataBind();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }
