@@ -246,8 +246,8 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="lib\" />
-    <Folder Include="Styles\" />
+    <Folder Include="lib\bootstrap\" />
+    <Folder Include="lib\bootstrap-icons\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Site.Master" />
