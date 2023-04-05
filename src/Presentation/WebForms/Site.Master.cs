@@ -17,11 +17,13 @@ namespace drielnox.Forum.Presetation.WebForms
                 {
                     phManageForum.Visible = true;
                     phNewForum.Visible = true;
+                    phAccounts.Visible = true;
                 }
                 else
                 {
                     phManageForum.Visible = false;
                     phNewForum.Visible = false;
+                    phAccounts.Visible = false;
                 }
             }
             else

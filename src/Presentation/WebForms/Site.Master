@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Forum</title>
     <link href="lib/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="lib/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" type="text/css" />
     <asp:ContentPlaceHolder ID="HeadContent" runat="server" />
 </head>
 <body>
@@ -51,10 +52,27 @@
                                 </li>
                             </ul>
                         </li>
+                        <asp:PlaceHolder ID="phAccounts" runat="server">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Accounts</a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <asp:HyperLink CssClass="dropdown-item" NavigateUrl="~/Accounts/Roles/List.aspx" runat="server">Roles</asp:HyperLink>
+                                    </li>
+                                    <li>
+                                        <asp:HyperLink CssClass="dropdown-item" NavigateUrl="~/Accounts/Users/List.aspx" runat="server">Users</asp:HyperLink>
+                                    </li>
+                                </ul>
+                            </li>
+                        </asp:PlaceHolder>
                     </ul>
                     <asp:Panel ID="pnlUserLoggin" CssClass="navbar-text" Visible="true" runat="server">
-                        <asp:HyperLink ID="lnkLogin" CssClass="btn btn-secondary me-2" NavigateUrl="~/Account/Login.aspx" runat="server">Login</asp:HyperLink>
-                        <asp:HyperLink ID="lnkSignUp" CssClass="btn btn-primary" NavigateUrl="~/Account/Register.aspx" runat="server">Sign-Up</asp:HyperLink>
+                        <asp:HyperLink ID="lnkLogin" CssClass="btn btn-secondary me-2" NavigateUrl="~/Account/Login.aspx" runat="server">
+                            <i class="bi bi-box-arrow-in-right"></i>&nbsp;Login
+                        </asp:HyperLink>
+                        <asp:HyperLink ID="lnkSignUp" CssClass="btn btn-primary" NavigateUrl="~/Account/Register.aspx" runat="server">
+                            <i class="bi bi-person-plus"></i>&nbsp;Sign-Up
+                        </asp:HyperLink>
                     </asp:Panel>
                     <asp:Panel ID="pnlUserLogged" CssClass="dropdown text-end" Visible="false" runat="server">
                         <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
