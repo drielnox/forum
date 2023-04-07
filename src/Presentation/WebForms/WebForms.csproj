@@ -126,7 +126,9 @@
   <ItemGroup>
     <Content Include="Accounts\Roles\Create.aspx" />
     <Content Include="Accounts\Roles\List.aspx" />
+    <Content Include="Accounts\Roles\View.aspx" />
     <Content Include="Accounts\Users\List.aspx" />
+    <Content Include="Accounts\Users\View.aspx" />
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Profile.aspx" />
     <Content Include="Account\Register.aspx" />
@@ -162,12 +164,26 @@
     <Compile Include="Accounts\Roles\List.aspx.designer.cs">
       <DependentUpon>List.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Accounts\Roles\View.aspx.cs">
+      <DependentUpon>View.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accounts\Roles\View.aspx.designer.cs">
+      <DependentUpon>View.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Accounts\Users\List.aspx.cs">
       <DependentUpon>List.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Accounts\Users\List.aspx.designer.cs">
       <DependentUpon>List.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\Users\View.aspx.cs">
+      <DependentUpon>View.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accounts\Users\View.aspx.designer.cs">
+      <DependentUpon>View.aspx</DependentUpon>
     </Compile>
     <Compile Include="Account\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
