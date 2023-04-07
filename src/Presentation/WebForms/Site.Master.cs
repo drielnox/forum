@@ -31,6 +31,7 @@ namespace drielnox.Forum.Presetation.WebForms
                 pnlUserLogged.Visible = false;
                 pnlUserLoggin.Visible = true;
                 phUserProfile.Visible = false;
+                phAccounts.Visible = false;
             }
         }
     }

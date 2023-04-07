@@ -31,16 +31,38 @@ namespace drielnox.Forum.Presetation.WebForms.Accounts.Users
                 var user = userManager.FindById(_userId);
                 if (user == null)
                 {
-                    System.Diagnostics.Trace.TraceError("User '{}' not founded.", _userId);
+                    System.Diagnostics.Trace.TraceError("User '{0}' not founded.", _userId);
                 }
 
                 LoadUser(user);
+
+                var roleStore = new RoleStore<IdentityRole>(ctx);
+                var roleManager = new RoleManager<IdentityRole>(roleStore);
+
+                var roles = roleManager.Roles
+                    .Where(x => x.Users
+                        .Any(y => y.UserId == _userId)
+                    )
+                    .ToList();
+
+                LoadUserRoles(roles);
             }
         }
 
         private void LoadUser(User user)
         {
             litUserName.Text = user.UserName;
+
+            txtUserId.Text = user.Id;
+            txtUserName.Text = user.UserName;
+            txtFirstName.Text = user.FirstName;
+            txtLastName.Text = user.LastName;
+        }
+
+        private void LoadUserRoles(IEnumerable<IdentityRole> roles)
+        {
+            gvRoles.DataSource = roles;
+            gvRoles.DataBind();
         }
     }
 }
