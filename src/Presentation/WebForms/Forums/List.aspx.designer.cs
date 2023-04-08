@@ -7,11 +7,11 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace OtadForum
+namespace drielnox.Forum.Presetation.WebForms.Forums
 {
 
 
-    public partial class ViewDiscussions
+    public partial class List
     {
 
         /// <summary>
@@ -24,12 +24,12 @@ namespace OtadForum
         protected global::System.Web.UI.WebControls.Label lblError;
 
         /// <summary>
-        /// Control grdTopics.
+        /// Control grdForums.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView grdTopics;
+        protected global::System.Web.UI.WebControls.GridView grdForums;
     }
 }

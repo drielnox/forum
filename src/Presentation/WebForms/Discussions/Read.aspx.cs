@@ -11,12 +11,25 @@ namespace OtadForum
 {
     public partial class ReadDiscussion : Page
     {
+        private string _discussionId;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             try
             {
-                show_text_values();
-                Show_Discussion();
+                _discussionId = Request.QueryString.Get("DiscussionId");
+                if (string.IsNullOrWhiteSpace(_discussionId))
+                {
+                    throw new ApplicationException("DiscussionId is null or empty.");
+                }
+
+                LoadDiscussion();
+                LoadComments();
+
+                if (!IsPostBack)
+                {
+                    UpdateViews();
+                }
             }
             catch (Exception err)
             {
@@ -28,12 +41,6 @@ namespace OtadForum
         {
             lblError.Visible = true;
             lblError.Text = message;
-        }
-
-        // save topic-id of selected discussion to be referenced from other modules
-        protected void show_text_values()
-        {
-            hidTopicId.Value = (string)Session["Value"];
         }
 
         // display the comment module. required to post comments
@@ -52,7 +59,7 @@ namespace OtadForum
                     throw new ApplicationException("No comment to post");
                 }
 
-                var discussionId = int.Parse(hidTopicId.Value);
+                var discussionId = int.Parse(_discussionId);
 
                 using (var ctx = new ForumContext())
                 {
@@ -75,7 +82,7 @@ namespace OtadForum
                 PanelComment.Visible = false;
                 HideError();
 
-                Load_Comments();
+                LoadComments();
             }
             catch (Exception err)
             {
@@ -88,12 +95,14 @@ namespace OtadForum
             lblError.Visible = false;
         }
 
-        // display discussion of selected topics and all comments posted under such discussion
-        protected void Show_Discussion()
+        /// <summary>
+        /// display discussion of selected topics and all comments posted under such discussion
+        /// </summary>
+        protected void LoadDiscussion()
         {
             try
             {
-                var discussionId = int.Parse(hidTopicId.Value);
+                var discussionId = int.Parse(_discussionId);
 
                 using (var ctx = new ForumContext())
                 {
@@ -109,9 +118,6 @@ namespace OtadForum
                     litAt.Text = discussion.CreatedAt.ToString();
                     litViewCount.Text = discussion.ViewCount.ToString();
                 }
-
-                Load_Comments();
-                Update_Views();
             }
             catch (Exception err)
             {
@@ -119,10 +125,12 @@ namespace OtadForum
             }
         }
 
-        // count and displays number of times the discussions have been opened(viewed)
-        protected void Update_Views()
+        /// <summary>
+        /// count and displays number of times the discussions have been opened(viewed)
+        /// </summary>
+        protected void UpdateViews()
         {
-            var discussionId = int.Parse(hidTopicId.Value);
+            var discussionId = int.Parse(_discussionId);
 
             using (var ctx = new ForumContext())
             {
@@ -136,12 +144,14 @@ namespace OtadForum
             }
         }
 
-        // display by default, all comments posted within a selected discussion
-        protected void Load_Comments()
+        /// <summary>
+        /// display by default, all comments posted within a selected discussion
+        /// </summary>
+        protected void LoadComments()
         {
             try
             {
-                var discussionId = int.Parse(hidTopicId.Value);
+                var discussionId = int.Parse(_discussionId);
 
                 using (var ctx = new ForumContext())
                 {

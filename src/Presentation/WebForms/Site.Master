@@ -27,7 +27,7 @@
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Forums</a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <asp:HyperLink CssClass="dropdown-item" NavigateUrl="~/Forums/View.aspx" runat="server">View</asp:HyperLink>
+                                    <asp:HyperLink CssClass="dropdown-item" NavigateUrl="~/Forums/List.aspx" runat="server">List</asp:HyperLink>
                                 </li>
                                 <asp:PlaceHolder ID="phNewForum" Visible="false" runat="server">
                                     <li>

@@ -1,26 +1,33 @@
-﻿using System;
+﻿using Persistence;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Data;
-using System.Data.Entity;
-using Persistence;
 
-namespace OtadForum
+namespace drielnox.Forum.Presetation.WebForms.Forums
 {
-    public partial class ViewDiscussions : Page
+    public partial class List : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            LoadDiscussions();
+            HideError();
+
+            try
+            {
+                LoadForums();
+            }
+            catch (Exception err)
+            {
+                ShowError(err.Message);
+            }
         }
 
         /// <summary>
-        /// display discussion topics on gridview control
+        /// load all available forums in gridview control
         /// </summary>
-        protected void LoadDiscussions()
+        protected void LoadForums()
         {
             HideError();
 
@@ -28,13 +35,9 @@ namespace OtadForum
             {
                 using (var ctx = new ForumContext())
                 {
-                    var discussions = ctx.Forums
-                        .SelectMany(x => x.Discussions)
-                        .Include(x => x.Comments)
-                        .ToList();
-
-                    grdTopics.DataSource = discussions;
-                    grdTopics.DataBind();
+                    var forums = ctx.Forums.ToList();
+                    grdForums.DataSource = forums;
+                    grdForums.DataBind();
                 }
             }
             catch (Exception err)

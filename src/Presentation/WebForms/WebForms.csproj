@@ -134,6 +134,7 @@
     <Content Include="Account\Register.aspx" />
     <Content Include="Account\SignOut.aspx" />
     <Content Include="Discussions\Read.aspx" />
+    <Content Include="Forums\List.aspx" />
     <Content Include="Forums\View.aspx" />
     <Content Include="Forums\Manage.aspx" />
     <Content Include="Discussions\New.aspx" />
@@ -226,6 +227,13 @@
     </Compile>
     <Compile Include="Discussions\Read.aspx.designer.cs">
       <DependentUpon>Read.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forums\List.aspx.cs">
+      <DependentUpon>List.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forums\List.aspx.designer.cs">
+      <DependentUpon>List.aspx</DependentUpon>
     </Compile>
     <Compile Include="Forums\View.aspx.cs">
       <DependentUpon>View.aspx</DependentUpon>

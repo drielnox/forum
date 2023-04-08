@@ -11,33 +11,22 @@ namespace OtadForum
 {
     public partial class ViewForums : Page
     {
+        private string _forumId;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             HideError();
 
             try
             {
-                Load_Forums();
-            }
-            catch (Exception err)
-            {
-                ShowError(err.Message);
-            }
-        }
-
-        // load all available forums in gridview control
-        protected void Load_Forums()
-        {
-            HideError();
-
-            try
-            {
-                using (var ctx = new ForumContext())
+                _forumId = Request.QueryString.Get("ForumId");
+                if (string.IsNullOrWhiteSpace(_forumId))
                 {
-                    var forums = ctx.Forums.ToList();
-                    grdForums.DataSource = forums;
-                    grdForums.DataBind();
+                    throw new ApplicationException("ForumId is null or empty.");
                 }
+
+                LoadForumDetails();
+                LoadTopics();
             }
             catch (Exception err)
             {
@@ -45,18 +34,22 @@ namespace OtadForum
             }
         }
 
-        // display all posted topics under the selected forum
-        protected void Load_Topics()
+        /// <summary>
+        /// display all posted topics under the selected forum
+        /// </summary>
+        protected void LoadTopics()
         {
             HideError();
 
             try
             {
+                int forumId = int.Parse(_forumId);
+
                 using (var ctx = new ForumContext())
                 {
                     var discussions = ctx.Forums
                         .Include(x => x.Discussions)
-                        .Single(x => x.Name == txtForumName.Text)
+                        .Single(x => x.Identifier == forumId)
                         .Discussions;
                     grdTopics.DataSource = discussions;
                     grdTopics.DataBind();
@@ -68,32 +61,21 @@ namespace OtadForum
             }
         }
 
-        // display forum name in textfield for further referencing on webpage
-        protected void Load_ForumName_Textfield()
+        /// <summary>
+        /// query and display details of selected forum from database
+        /// </summary>
+        protected void LoadForumDetails()
         {
             HideError();
 
             try
             {
-                txtForumName.Text = grdForums.SelectedRow.Cells[0].Text;
-            }
-            catch (Exception err)
-            {
-                ShowError(err.Message);
-            }
-        }
+                int forumId = int.Parse(_forumId);
 
-        // query and display details of selected forum from database 
-        protected void Load_Forum_Details()
-        {
-            HideError();
-
-            try
-            {
                 using (var ctx = new ForumContext())
                 {
                     var forum = ctx.Forums
-                        .Single(x => x.Name == txtForumName.Text);
+                        .Single(x => x.Identifier == forumId);
                     litForumName.Text = $"{forum.Name} Forum";
                     litAdmin.Text = forum.Administrator;
                     litEmail.Text = forum.Email;
@@ -104,62 +86,6 @@ namespace OtadForum
             {
                 ShowError(err.Message);
             }
-        }
-
-        // display details and available topics of selected forum
-        protected void grdForums_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Load_ForumName_Textfield();
-            Load_Forum_Details();
-            Load_Topics();
-            PanelDiscuss.Visible = true;
-            PanelForums.Visible = false;
-        }
-
-        // save topic-id of selected topic into a textbox for further referencing
-        protected void Load_topicID_Textfield()
-        {
-            HideError();
-
-            try
-            {
-                txtTopicID.Text = grdTopics.SelectedRow.Cells[0].Text;
-            }
-            catch (Exception err)
-            {
-                ShowError(err.Message);
-            }
-        }
-
-        // save topic-id of selected topic from 'Forums' module to 'Discussions' module to view topic's full discussion 
-        protected void show_textvalue()
-        {
-            Session["Value"] = txtTopicID.Text;
-        }
-
-        // display topic-id of selected topic on 'Discussions' module and open the 'Discussions' module to view full discussion
-        protected void grdTopics_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            HideError();
-
-            try
-            {
-                Load_topicID_Textfield();
-                show_textvalue();
-
-                Response.Redirect("~/Discussions/View.aspx");
-            }
-            catch (Exception err)
-            {
-                ShowError(err.Message);
-            }
-        }
-
-        // display available forums and hide forums' topics module
-        protected void lnkForums_Click(object sender, EventArgs e)
-        {
-            PanelForums.Visible = true;
-            PanelDiscuss.Visible = false;
         }
 
         private void ShowError(string message)

@@ -6,62 +6,30 @@
     <p align="center">
         <asp:Label ID="lblError" runat="server" BackColor="Red" Font-Bold="True" Font-Names="Arial" Font-Size="Large" ForeColor="White" Text="E" Visible="False"></asp:Label>
     </p>
-    <asp:Panel ID="PanelForums" runat="server">
-        <h2>Forums Page</h2>
-        <asp:LinkButton ID="LinkButton2" runat="server">Refresh Discussions</asp:LinkButton>
-        <asp:GridView ID="grdForums" CssClass="table" AutoGenerateColumns="False" EnableSortingAndPagingCallbacks="True" OnSelectedIndexChanged="grdForums_SelectedIndexChanged" runat="server">
-            <Columns>
-                <asp:BoundField DataField="Name" HeaderText="Name"></asp:BoundField>
-                <asp:BoundField DataField="Administrator" HeaderText="Administrator" />
-                <asp:BoundField DataField="Email" HeaderText="Email" />
-                <asp:BoundField DataField="CreatedAt" HeaderText="Created" />
-                <asp:ButtonField CommandName="Select" HeaderText="Go..." Text="View"></asp:ButtonField>
-            </Columns>
-        </asp:GridView>
-    </asp:Panel>
-    <asp:Panel ID="PanelDiscuss" Visible="False" runat="server">
-        <asp:HyperLink ID="hlForums" runat="server" NavigateUrl="~/Forums/View.aspx">Back to Forums</asp:HyperLink>
-        <br />
-        <div class="card">
-            <div class="card-header">
-                <asp:Literal ID="litForumName" runat="server"></asp:Literal>
-            </div>
-            <div class="card-body">
-                <asp:LinkButton ID="LinkButton1" runat="server">Refresh Discussions</asp:LinkButton>
-                <br />
-                <asp:GridView ID="grdTopics" CssClass="table" runat="server" AutoGenerateColumns="False" EnableSortingAndPagingCallbacks="True" OnSelectedIndexChanged="grdTopics_SelectedIndexChanged">
-                    <Columns>
-                        <asp:BoundField DataField="Identifier" HeaderText="ID"></asp:BoundField>
-                        <asp:ButtonField CommandName="Select" DataTextField="Subject" HeaderText="Subject_of_Discussion" Text="Title"></asp:ButtonField>
-                        <asp:BoundField DataField="CreatedBy" HeaderText="By" />
-                        <asp:BoundField DataField="CreatedAt" HeaderText="At" />
-                        <asp:BoundField DataField="CommentsCount" HeaderText="Comments" />
-                        <asp:BoundField DataField="ViewCount" HeaderText="Views" />
-                    </Columns>
-                </asp:GridView>
-            </div>
-            <div class="card-footer text-secondary">
-                Admin:&nbsp;<asp:Literal ID="litAdmin" runat="server"></asp:Literal>
-                Email:&nbsp;<asp:Literal ID="litEmail" runat="server"></asp:Literal>
-                Created on:&nbsp;<asp:Literal ID="litCreatedAt" runat="server"></asp:Literal>
-            </div>
+    <asp:HyperLink ID="hlForums" runat="server" NavigateUrl="~/Forums/View.aspx">Back to Forums</asp:HyperLink>
+    <br />
+    <div class="card">
+        <div class="card-header">
+            <asp:Literal ID="litForumName" runat="server"></asp:Literal>
         </div>
-    </asp:Panel>
-    <asp:Panel ID="Panel3" runat="server" Height="100px" Visible="False">
-        Hidden fields:<br />
-        &nbsp;<asp:TextBox ID="txtTime" runat="server"></asp:TextBox>
-        &nbsp;
-        <asp:TextBox ID="txtDate" runat="server"></asp:TextBox>
-        &nbsp;&nbsp;
-        <asp:TextBox ID="txtDateTime" runat="server"></asp:TextBox>
-        &nbsp;&nbsp;
-        <asp:TextBox ID="txtPosted_by" runat="server"></asp:TextBox>
-        &nbsp;
-        <asp:TextBox ID="txtTopicID" runat="server"></asp:TextBox>
-        &nbsp;
-        <asp:TextBox ID="txtForumName" runat="server"></asp:TextBox>
-        <br />
-        &nbsp;<br />
-        <asp:Button ID="load_hidden_data" runat="server" Text="Button" />
-    </asp:Panel>
+        <div class="card-body">
+            <asp:LinkButton ID="LinkButton1" runat="server">Refresh Discussions</asp:LinkButton>
+            <br />
+            <asp:GridView ID="grdTopics" CssClass="table" runat="server" AutoGenerateColumns="False">
+                <Columns>
+                    <asp:BoundField DataField="Identifier" HeaderText="Identifier" Visible="False"></asp:BoundField>
+                    <asp:HyperLinkField DataNavigateUrlFields="Identifier" DataNavigateUrlFormatString="~/Discussions/Read.aspx?DiscussionId={0}" DataTextField="Subject" HeaderText="Subject" />
+                    <asp:BoundField DataField="CreatedBy" HeaderText="By" />
+                    <asp:BoundField DataField="CreatedAt" HeaderText="At" />
+                    <asp:BoundField DataField="CommentsCount" HeaderText="Comments" />
+                    <asp:BoundField DataField="ViewCount" HeaderText="Views" />
+                </Columns>
+            </asp:GridView>
+        </div>
+        <div class="card-footer text-secondary">
+            Admin:&nbsp;<asp:Literal ID="litAdmin" runat="server"></asp:Literal>
+            Email:&nbsp;<asp:Literal ID="litEmail" runat="server"></asp:Literal>
+            Created on:&nbsp;<asp:Literal ID="litCreatedAt" runat="server"></asp:Literal>
+        </div>
+    </div>
 </asp:Content>
