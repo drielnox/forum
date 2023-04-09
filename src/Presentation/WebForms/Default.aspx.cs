@@ -14,6 +14,24 @@ namespace drielnox.Forum.Presetation.WebForms
         {
             LoadLastFiveDiscussions();
             LoadLastFiveComments();
+            LoadCategoryDistribution();
+        }
+
+        private void LoadCategoryDistribution()
+        {
+            using (var ctx = new ForumContext())
+            {
+                var chartValues = ctx.Categories
+                    .Select(x => new
+                    {
+                        CategoryName = x.Name,
+                        DiscussionCount = x.RelatedDiscussions.Count
+                    })
+                    .ToList();
+
+                chrtCategoryDistribution.DataSource = chartValues;
+                chrtCategoryDistribution.DataBind();
+            }
         }
 
         private void LoadLastFiveComments()

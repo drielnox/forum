@@ -24,6 +24,10 @@ namespace Persistence.Mappings
                 .IsUnicode(false)
                 .HasMaxLength(100)
                 .IsRequired();
+
+            HasMany(x => x.RelatedDiscussions)
+                .WithRequired(x => x.Category)
+                .HasForeignKey(x => x.CategoryId);
         }
     }
 }

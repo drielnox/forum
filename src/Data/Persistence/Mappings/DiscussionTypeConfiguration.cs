@@ -56,7 +56,7 @@ namespace Persistence.Mappings
                 .WithMany(x => x.Discussions)
                 .HasForeignKey(x => x.ForumId);
             HasRequired(x => x.Category)
-                .WithMany()
+                .WithMany(x => x.RelatedDiscussions)
                 .HasForeignKey(x => x.CategoryId);
             HasMany(x => x.Comments)
                 .WithRequired(x => x.RelatedDiscussion)
