@@ -46,6 +46,10 @@ namespace Persistence.Initializers
             },
             new IdentityRole()
             {
+                Name = "Moderator"
+            },
+            new IdentityRole()
+            {
                 Name = "User"
             }
         };
