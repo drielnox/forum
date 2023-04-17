@@ -23,8 +23,7 @@
             <asp:TextBox ID="txtForumName" CssClass="form-control" runat="server"></asp:TextBox>
         </div>
         <div class="mb-3">
-            <asp:Label ID="lblForumAdmin" CssClass="form-label" AssociatedControlID="txtForumAdmin" runat="server">Forum Admin:</asp:Label>
-            <asp:TextBox ID="txtForumAdmin" CssClass="form-control" runat="server"></asp:TextBox>
+            <asp:Label ID="lblForumAdmin" CssClass="form-label" AssociatedControlID="ddlAdmins" runat="server">Forum Admin:</asp:Label>
             <asp:DropDownList ID="ddlAdmins" CssClass="form-select" DataValueField="Id" DataTextField="UserName" runat="server"></asp:DropDownList>
         </div>
         <div class="mb-3">

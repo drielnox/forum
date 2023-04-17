@@ -1,27 +1,20 @@
-﻿using Persistence;
+﻿using drielnox.Forum.Business.Logic;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace drielnox.Forum.Presetation.WebForms.Forums
 {
     public partial class List : System.Web.UI.Page
     {
+        private readonly ForumManager _forumManager;
+
+        public List()
+        {
+            _forumManager = new ForumManager();
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            HideError();
-
-            try
-            {
-                LoadForums();
-            }
-            catch (Exception err)
-            {
-                ShowError(err.Message);
-            }
+            LoadForums();
         }
 
         /// <summary>
@@ -29,32 +22,20 @@ namespace drielnox.Forum.Presetation.WebForms.Forums
         /// </summary>
         protected void LoadForums()
         {
-            HideError();
-
-            try
-            {
-                using (var ctx = new ForumContext())
-                {
-                    var forums = ctx.Forums.ToList();
-                    grdForums.DataSource = forums;
-                    grdForums.DataBind();
-                }
-            }
-            catch (Exception err)
-            {
-                ShowError(err.Message);
-            }
+            var forums = _forumManager.ViewForums();
+            grdForums.DataSource = forums;
+            grdForums.DataBind();
         }
 
         private void ShowError(string message)
         {
-            lblError.Visible = true;
-            lblError.Text = $"Error: {message}";
+            pnlError.Visible = true;
+            litError.Text = message;
         }
 
         private void HideError()
         {
-            lblError.Visible = false;
+            pnlError.Visible = false;
         }
     }
 }

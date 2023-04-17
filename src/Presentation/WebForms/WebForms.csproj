@@ -316,6 +316,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Business\Logic\Logic.csproj">
+      <Project>{221d90ee-786b-4d6b-bbfe-1b8836f757f6}</Project>
+      <Name>Logic</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Data\Persistence\Persistence.csproj">
       <Project>{0F790056-B587-4E7B-AF3D-924FE72DB008}</Project>
       <Name>Persistence</Name>

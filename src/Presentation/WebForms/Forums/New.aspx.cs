@@ -1,4 +1,6 @@
 ﻿using drielnox.Forum.Business.Entities;
+using drielnox.Forum.Business.Logic;
+using drielnox.Forum.Business.Logic.DTOs.Requests;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Persistence;
@@ -11,6 +13,13 @@ namespace OtadForum
 {
     public partial class NewForum : Page
     {
+        private readonly ForumManager _manager;
+
+        public NewForum()
+        {
+            _manager = new ForumManager();
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!User.Identity.IsAuthenticated)
@@ -37,7 +46,11 @@ namespace OtadForum
             PanelForum.Visible = true;
         }
 
-        // save new forum account details
+        /// <summary>
+        /// save new forum account details
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void lnkCreateForum_Click(object sender, EventArgs e)
         {
             HideError();
@@ -49,7 +62,7 @@ namespace OtadForum
                     throw new ApplicationException("Please enter Forum Name");
                 }
 
-                if (string.IsNullOrWhiteSpace(txtForumAdmin.Text))
+                if (string.IsNullOrWhiteSpace(ddlAdmins.SelectedValue))
                 {
                     throw new ApplicationException("Please enter Forum Administrator's name");
                 }
@@ -59,23 +72,16 @@ namespace OtadForum
                     throw new ApplicationException("Empty field: Forum's Email Address");
                 }
 
-                using (var ctx = new ForumContext())
-                {
-                    var forum = new Forum();
-                    forum.Name = txtForumName.Text;
-                    forum.Administrator = txtForumAdmin.Text;
-                    forum.Email = txtForumEmail.Text;
-
-                    ctx.Forums.Add(forum);
-
-                    ctx.SaveChanges();
-                }
+                var request = new CreateForumRequest(txtForumName.Text, ddlAdmins.SelectedItem.Value, txtForumEmail.Text);
+                _manager.CreateForum(request);
 
                 PanelReport.Visible = true;
                 Label1.Text = "You have successfully created a new forum";
                 PanelForum.Visible = false;
 
                 ClearFields();
+
+                
             }
             catch (Exception err)
             {
@@ -83,7 +89,11 @@ namespace OtadForum
             }
         }
 
-        // display 'Create New Forum' panel and hide other panel(s)
+        /// <summary>
+        /// display 'Create New Forum' panel and hide other panel(s)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void lnkNewForum_Click(object sender, EventArgs e)
         {
             PanelForum.Visible = true;
@@ -93,7 +103,7 @@ namespace OtadForum
         private void ClearFields()
         {
             txtForumName.Text = string.Empty;
-            txtForumAdmin.Text = string.Empty;
+            ddlAdmins.ClearSelection();
             txtForumEmail.Text = string.Empty;
         }
 
