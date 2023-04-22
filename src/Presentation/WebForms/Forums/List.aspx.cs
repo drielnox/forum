@@ -1,15 +1,19 @@
 ﻿using drielnox.Forum.Business.Logic;
+using drielnox.Forum.Transversal.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 
 namespace drielnox.Forum.Presetation.WebForms.Forums
 {
     public partial class List : System.Web.UI.Page
     {
-        private readonly ForumManager _forumManager;
+        private readonly IServiceProvider _services;
+        private readonly IForumManager _forumManager;
 
         public List()
         {
-            _forumManager = new ForumManager();
+            _services = DIContainer.Build();
+            _forumManager = _services.GetService<IForumManager>();
         }
 
         protected void Page_Load(object sender, EventArgs e)

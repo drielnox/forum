@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace drielnox.Forum.Business.Logic
 {
-    internal class CategoryManager
+    public sealed class CategoryManager : BaseManager, ICategoryManager
     {
     }
 }

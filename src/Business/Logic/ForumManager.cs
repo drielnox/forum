@@ -10,7 +10,7 @@ using System.Linq;
 
 namespace drielnox.Forum.Business.Logic
 {
-    public sealed class ForumManager : BaseManager
+    public sealed class ForumManager : BaseManager, IForumManager
     {
         public IEnumerable<ViewForumResponse> ViewForums()
         {

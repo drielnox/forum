@@ -43,6 +43,9 @@
     <Compile Include="DTOs\Requests\CreateForumRequest.cs" />
     <Compile Include="DTOs\Responses\ViewForumResponse.cs" />
     <Compile Include="ForumManager.cs" />
+    <Compile Include="ICategoryManager.cs" />
+    <Compile Include="IDiscussionManager.cs" />
+    <Compile Include="IForumManager.cs" />
     <Compile Include="MapperProfiles\ForumProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
