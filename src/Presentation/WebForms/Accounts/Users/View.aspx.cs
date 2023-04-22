@@ -1,6 +1,7 @@
 ﻿using drielnox.Forum.Business.Entities;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.Extensions.Logging;
 using Persistence;
 using System;
 using System.Collections.Generic;
@@ -13,14 +14,20 @@ namespace drielnox.Forum.Presetation.WebForms.Accounts.Users
 {
     public partial class View : System.Web.UI.Page
     {
+        private readonly ILogger _logger;
         private string _userId;
+
+        public View()
+        {
+            _logger = Logging.CreateLogger<View>();
+        }
 
         protected void Page_Load(object sender, EventArgs e)
         {
             _userId = Request.QueryString.Get("UserId");
             if (string.IsNullOrWhiteSpace(_userId))
             {
-                System.Diagnostics.Trace.TraceError("UserId is null or empty.");
+                _logger.LogError("UserId is null or empty.");
             }
 
             using (var ctx = new ForumContext())
@@ -31,7 +38,7 @@ namespace drielnox.Forum.Presetation.WebForms.Accounts.Users
                 var user = userManager.FindById(_userId);
                 if (user == null)
                 {
-                    System.Diagnostics.Trace.TraceError("User '{0}' not founded.", _userId);
+                    _logger.LogError("User '{0}' not founded.", _userId);
                 }
 
                 LoadUser(user);

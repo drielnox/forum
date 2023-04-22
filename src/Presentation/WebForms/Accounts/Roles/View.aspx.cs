@@ -1,6 +1,7 @@
 ﻿using drielnox.Forum.Business.Entities;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.Extensions.Logging;
 using Persistence;
 using System;
 using System.Collections.Generic;
@@ -13,14 +14,20 @@ namespace drielnox.Forum.Presetation.WebForms.Accounts.Roles
 {
     public partial class View : System.Web.UI.Page
     {
+        private readonly ILogger _logger;
         private string _roleId;
+
+        public View()
+        {
+            _logger = Logging.CreateLogger<View>();
+        }
 
         protected void Page_Load(object sender, EventArgs e)
         {
             _roleId = Request.QueryString.Get("RoleId");
             if (string.IsNullOrWhiteSpace(_roleId))
             {
-                System.Diagnostics.Trace.TraceError("RoleId is null or empty.");
+                _logger.LogError("RoleId is null or empty.");
             }
 
             using (var ctx = new ForumContext())
@@ -31,7 +38,7 @@ namespace drielnox.Forum.Presetation.WebForms.Accounts.Roles
                 var role = roleManager.FindById(_roleId);
                 if (role == null)
                 {
-                    System.Diagnostics.Trace.TraceError("Role '{0}' not founded.", _roleId);
+                    _logger.LogError("Role '{0}' not founded.", _roleId);
                 }
 
                 LoadRole(role);
