@@ -7,7 +7,7 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace OtadForum
+namespace drielnox.Forum.Presetation.WebForms.Discussions
 {
 
 

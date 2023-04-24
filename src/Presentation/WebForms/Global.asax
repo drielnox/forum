@@ -1,1 +1,1 @@
-﻿<%@ Application Codebehind="Global.asax.cs" Inherits="OtadForum.Global" Language="C#" %>
+﻿<%@ Application Codebehind="Global.asax.cs" Inherits="drielnox.Forum.Presetation.WebForms.Global" Language="C#" %>

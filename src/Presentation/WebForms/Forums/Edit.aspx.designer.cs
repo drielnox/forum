@@ -11,79 +11,97 @@ namespace drielnox.Forum.Presetation.WebForms.Forums
 {
 
 
-    public partial class ViewForums
+    public partial class Edit
     {
 
         /// <summary>
-        /// Control lblError.
+        /// Control pnlError.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblError;
+        protected global::System.Web.UI.WebControls.Panel pnlError;
 
         /// <summary>
-        /// Control hlForums.
+        /// Control litError.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlForums;
+        protected global::System.Web.UI.WebControls.Literal litError;
 
         /// <summary>
-        /// Control litForumName.
+        /// Control PanelForum.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litForumName;
+        protected global::System.Web.UI.WebControls.Panel PanelForum;
 
         /// <summary>
-        /// Control LinkButton1.
+        /// Control lblForumName.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton1;
+        protected global::System.Web.UI.WebControls.Label lblForumName;
 
         /// <summary>
-        /// Control grdTopics.
+        /// Control txtForumName.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView grdTopics;
+        protected global::System.Web.UI.WebControls.TextBox txtForumName;
 
         /// <summary>
-        /// Control litAdmin.
+        /// Control lblForumAdmin.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litAdmin;
+        protected global::System.Web.UI.WebControls.Label lblForumAdmin;
 
         /// <summary>
-        /// Control litEmail.
+        /// Control ddlAdmins.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litEmail;
+        protected global::System.Web.UI.WebControls.DropDownList ddlAdmins;
 
         /// <summary>
-        /// Control litCreatedAt.
+        /// Control lblForumEmail.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litCreatedAt;
+        protected global::System.Web.UI.WebControls.Label lblForumEmail;
+
+        /// <summary>
+        /// Control txtForumEmail.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtForumEmail;
+
+        /// <summary>
+        /// Control lnkCreateForum.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkCreateForum;
     }
 }

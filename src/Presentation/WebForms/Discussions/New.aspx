@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Start New Discussion" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="New.aspx.cs" Inherits="OtadForum.NewDiscussion" %>
+﻿<%@ Page Title="Start New Discussion" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="New.aspx.cs" Inherits="drielnox.Forum.Presetation.WebForms.Discussions.NewDiscussion" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>

@@ -5,7 +5,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Persistence;
 
-namespace OtadForum
+namespace drielnox.Forum.Presetation.WebForms.Discussions
 {
     public partial class NewDiscussion : Page
     {

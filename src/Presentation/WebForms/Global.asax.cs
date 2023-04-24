@@ -6,9 +6,8 @@ using System.Web.Security;
 using System.Web.SessionState;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.WebControls;
-using drielnox.Forum.Presetation.WebForms;
 
-namespace OtadForum
+namespace drielnox.Forum.Presetation.WebForms
 {
     public class Global : HttpApplication
     {

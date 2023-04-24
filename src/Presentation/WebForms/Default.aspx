@@ -44,8 +44,10 @@
                 <div class="card-header">
                     Category distribution
                 </div>
-                <div class="card-body">
-                    <asp:Chart ID="chrtCategoryDistribution" CssClass="img-fluid" Width="500" runat="server">
+                <div id="chartContainer" class="card-body">
+                    <asp:HiddenField ID="chartContainerWidth" runat="server" />
+                    <asp:HiddenField ID="chartContainerHeight" runat="server" />
+                    <asp:Chart ID="chrtCategoryDistribution" CssClass="img-fluid" runat="server">
                         <Titles>
                             <asp:Title Text="Discussion count by Category"></asp:Title>
                         </Titles>
@@ -66,4 +68,20 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        function setChartContainerSize() {
+            var chartContainer = document.getElementById("chartContainer");
+            var width = chartContainer.offsetWidth;
+            var height = chartContainer.offsetHeight;
+
+            var chartContainerWidthField = document.getElementById("<%= chartContainerWidth.ClientID %>");
+            chartContainerWidthField.value = width;
+            var chartContainerHeightField = document.getElementById("<%= chartContainerHeight.ClientID %>");
+            chartContainerHeightField.value = height;
+        }
+
+        window.onload = function () {
+            setChartContainerSize();
+        };
+    </script>
 </asp:Content>

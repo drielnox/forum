@@ -8,7 +8,7 @@ using System.Data;
 using System.Data.Entity;
 using Persistence;
 
-namespace OtadForum
+namespace drielnox.Forum.Presetation.WebForms.Discussions
 {
     public partial class ViewDiscussions : Page
     {

@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 using Persistence;
 using System.Data.Entity;
 
-namespace OtadForum
+namespace drielnox.Forum.Presetation.WebForms.Forums
 {
     public partial class ViewForums : Page
     {

@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.UI;
 
-namespace OtadForum
+namespace drielnox.Forum.Presetation.WebForms.Forums
 {
     public partial class NewForum : Page
     {

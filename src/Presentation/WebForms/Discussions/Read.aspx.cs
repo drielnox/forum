@@ -7,7 +7,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Persistence;
 
-namespace OtadForum
+namespace drielnox.Forum.Presetation.WebForms.Discussions
 {
     public partial class ReadDiscussion : Page
     {
